@@ -9,6 +9,10 @@ This README would normally document whatever steps are necessary to get your app
 * [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
 ### How do I get set up? ###
+This project requires gulp-cli. Install with the command below.
+```bash
+    npm install -g gulp-cli
+```
 
 * Summary of set up
 * Configuration

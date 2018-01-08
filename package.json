@@ -17,5 +17,14 @@
   ],
   "author": "Ian Mackie",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/css_dev_lab/electron-angular-ngrx#readme"
+  "homepage": "https://bitbucket.org/css_dev_lab/electron-angular-ngrx#readme",
+  "devDependencies": {
+    "@types/gulp": "^4.0.5",
+    "@types/node": "^9.3.0",
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^3.2.3",
+    "gulpclass": "^0.1.2",
+    "ts-node": "^4.1.0",
+    "typescript": "^2.6.2"
+  }
 }
