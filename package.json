@@ -19,6 +19,7 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/css_dev_lab/electron-angular-ngrx#readme",
   "devDependencies": {
+    "@angular/cli": "^1.6.3",
     "@types/gulp": "^4.0.5",
     "@types/node": "^9.3.0",
     "gulp": "^3.9.1",
