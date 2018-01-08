@@ -1,5 +1,11 @@
 # ElectronAngularNgrx
 
+This project requires Electron.
+Typeings are installed automatically.
+```bash
+npm install -g electron
+```
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
 
 ## Development server
