@@ -89,8 +89,6 @@ gulp.task('launch:var', setLaunchVariable);
 
 gulp.task('launch:electron', launchElectron);
 
-gulp.task('build', gulp.series('build:app', 'build:electron', 'launch:var', 'launch:electron'));
-
 gulp.task('rebuild:app', rebuildApp);
 
 gulp.task('serve:live-reload', serveLiveReload);
@@ -111,6 +109,7 @@ gulp.task('watch:app', done => {
   done();
 });
 
+// Chains.
 gulp.task(
   'live-reload',
   gulp.series(
@@ -121,4 +120,6 @@ gulp.task(
   )
 );
 
-// Chains.
+gulp.task(
+  'electron:launch',
+    gulp.series('build:app', 'build:electron', 'launch:var', 'launch:electron'));
