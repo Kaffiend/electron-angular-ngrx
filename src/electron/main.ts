@@ -9,7 +9,7 @@ const isDev = process.env.NODE_ENV !== 'production';
 
 const mainWindowSettings: Electron.BrowserWindowConstructorOptions = {
   width: 800,
-  height: 600,
+  height: 650,
   frame: true
 };
 

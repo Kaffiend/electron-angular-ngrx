@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "electron.lr": "gulp live-reload",
-    "electron.launch": "gulp electron:launch",
+    "live-reload": "gulp live-reload",
+    "launch": "gulp electron:launch",
     "start": "gulp live-reload",
     "build": "gulp electron:launch",
     "test": "ng test",

@@ -1,11 +1,39 @@
 # ElectronAngularNgrx
 
 This project requires Electron.
-Typeings are installed automatically.
+Typings are installed automatically.
 ```bash
 npm install -g electron
 ```
 
+# Tasks - Build Process
+
+├── build:electron - builds `src/electron` => `dist/electron`
+├── build:app - calls `ng build` on angular app => `dist/`
+├── launch:var - sets required environment variable for proxyed electron window url
+├── launch:electron - launches electron process on `dist/electron`
+├── rebuild:app - called by watcher to rebuild angular code.
+├── serve:live-reload - proxyies electron window url with browserlink for live reload
+├── live-reload:var - sets required environment variable to turn on proxy.
+├── watch:electron - watcher task for changes on `src/electron`
+├── watch:app - watcher task on angular code
+├─┬ live-reload - task chain for launching live-reload workflow
+│ └─┬ <series>
+│   ├── build:app
+│   ├── build:electron
+│   ├── live-reload:var
+│   └─┬ <parallel>
+│     ├── watch:app
+│     ├── watch:electron
+│     └── serve:live-reload
+└─┬ electron:launch - task chain for launching single run with no proxy.
+  └─┬ <series>
+    ├── build:app
+    ├── build:electron
+    ├── launch:var
+    └── launch:electron
+
+# @angular/cli 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
 
 ## Development server
