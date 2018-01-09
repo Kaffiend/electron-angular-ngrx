@@ -5,6 +5,7 @@ import * as path from 'path';
 let applicationRef: Electron.BrowserWindow = null;
 
 const debugMode = true;
+const isDev = process.env.NODE_ENV !== 'production';
 
 const mainWindowSettings: Electron.BrowserWindowConstructorOptions = {
     width: 800,
@@ -15,16 +16,18 @@ const mainWindowSettings: Electron.BrowserWindowConstructorOptions = {
 function initMainListener() {
     ipcMain.on('ELECTRON_BRIDGE_HOST', (event, msg) => {
         console.log('reload msg received', msg);
-        if (msg === 'reload') {
-            event.sender.send('ELECTRON_BRIDGE_CLIENT', 'reloading');
-            applicationRef.reload();
+        if (msg === 'ping') {
+            event.sender.send('ELECTRON_BRIDGE_CLIENT', 'pong');
         }
     });
 }
 
 function createWindow() {
+    const url = isDev
+      ? 'http://localhost:4200'
+      : `file:///${__dirname}../index.html`;
     applicationRef = new BrowserWindow(mainWindowSettings);
-    applicationRef.loadURL(`file:///${__dirname}/../index.html`);
+    applicationRef.loadURL(url);
     if (debugMode) {
         // Open the DevTools.
         applicationRef.webContents.openDevTools();
