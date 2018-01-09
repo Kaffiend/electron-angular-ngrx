@@ -10,11 +10,11 @@ npm install -g electron
 ```
 ├── build:electron - builds `src/electron` => `dist/electron`
 ├── build:app - calls `ng build` on angular app => `dist/`
-├── launch:var - sets required environment variable for proxyed electron window url
+├── launch:var - sets required environment variable for non-proxyed electron window url
 ├── launch:electron - launches electron process on `dist/electron`
 ├── rebuild:app - called by watcher to rebuild angular code.
 ├── serve:live-reload - proxyies electron window url with browserlink for live reload
-├── live-reload:var - sets required environment variable to turn on proxy.
+├── live-reload:var - sets required environment variable for proxyed electron window url.
 ├── watch:electron - watcher task for changes on `src/electron`
 ├── watch:app - watcher task on angular code
 ├─┬ live-reload - task chain for launching live-reload workflow
@@ -33,7 +33,7 @@ npm install -g electron
     ├── launch:var
     └── launch:electron
 ```
-# @angular/cli 
+# angular/cli 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
 
 ## Development server
@@ -44,9 +44,26 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Build - Live Reload (development)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Run `npm start` (default start script), `npm run live-reload` or `gulp live-reload` to build, launch and proxy live reloads. 
+The angular build artifacts will be stored in the `dist/` directory.
+The electron build artifacts will be stored in the `dist/electron` directory.
+The Electron main process will be restarted automatically if the electron code changes.
+The Render Process will utlize live reloads to reload changes on save on angular code.
+
+## Build - One-Shot Launch (development)
+Run `npm run launch` or `gulp electron:launch` to build,  and launch and non-proxyed build. 
+The angular build artifacts will be stored in the `dist/` directory.
+The electron build artifacts will be stored in the `dist/electron` directory.
+
+## ToDo
+- [ ] Integrate HMR (Hot Module Relplacement) workflow.
+- [ ] Integrate simple NGRX with HMR.
+- [ ] Electron packaging.
+- [ ] Integrate developement extensions redux, devtron.
+- [ ] Add Compodoc.
+
 
 ## Running unit tests
 
