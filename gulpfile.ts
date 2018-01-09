@@ -46,11 +46,13 @@ function buildApp() {
   });
 }
 
-function rebuildApp() {
-  return exec('ng build --delete-output-path false', (err, stdin, stderr) => {
+function rebuildApp(done) {
+  exec('ng build --delete-output-path false', (err, stdin, stderr) => {
     if (err) {
       console.log(err);
     }
+    proxyReload();
+    return done();
   });
 }
 
@@ -59,11 +61,11 @@ function proxyInit() {
 }
 
 function proxyReload() {
-  return browserSync.reload();
+  return browserSync.get('LiveProxy').reload();
 }
 
 function serveLiveReload(done) {
-  return nodemon({
+  nodemon({
     exec: `electron ${Paths.electron_dest}main`,
     watch: [Paths.electron_dest]
   }).on('start', () => {
@@ -98,14 +100,11 @@ gulp.task('live-reload:var', setLiveReloadVariable);
 // Parallel.
 gulp.task('watch:electron', done => {
   gulp.watch(Paths.electron_src, buildElectron);
-  browserSync.reload();
   done();
 });
 
 gulp.task('watch:app', done => {
-  gulp.watch(Paths.app_src, () => {
-    gulp.series(['rebuild:app']);
-  });
+  gulp.watch(Paths.app_src, rebuildApp);
   done();
 });
 
@@ -120,6 +119,4 @@ gulp.task(
   )
 );
 
-gulp.task(
-  'electron:launch',
-    gulp.series('build:app', 'build:electron', 'launch:var', 'launch:electron'));
+gulp.task('electron:launch', gulp.series('build:app', 'build:electron', 'launch:var', 'launch:electron'));
