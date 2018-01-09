@@ -4,11 +4,11 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "watch:app": "ng build --output-path dist --watch --environment dev --delete-output-path false",
+    "watch:app": "gulp watch:app",
     "watch:electron": "gulp watch:electron",
     "build:electron": "gulp build:electron",
     "serve:electron": "nodemon --watch dist/electron --exec electron dist/electron/main.js",
-    "start": "ng build && npm run build:electron && concurrently --kill-others \"npm run watch:app\" \"npm run watch:electron\" \" npm run serve:electron\" ",
+    "start": "gulp build:app && npm run build:electron && concurrently --kill-others \"npm run watch:electron\" \" npm run serve:electron\" \"ng serve -hmr -lr --servePath dist\" ",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",

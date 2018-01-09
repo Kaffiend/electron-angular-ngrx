@@ -14,9 +14,10 @@ const mainWindowSettings: Electron.BrowserWindowConstructorOptions = {
 
 function initMainListener() {
     ipcMain.on('ELECTRON_BRIDGE_HOST', (event, msg) => {
-        console.log('msg received', msg);
-        if (msg === 'ping') {
-            event.sender.send('ELECTRON_BRIDGE_CLIENT', 'pong');
+        console.log('reload msg received', msg);
+        if (msg === 'reload') {
+            event.sender.send('ELECTRON_BRIDGE_CLIENT', 'reloading');
+            applicationRef.reload();
         }
     });
 }
