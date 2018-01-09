@@ -7,7 +7,7 @@ npm install -g electron
 ```
 
 # Tasks - Build Process
-
+```
 ├── build:electron - builds `src/electron` => `dist/electron`
 ├── build:app - calls `ng build` on angular app => `dist/`
 ├── launch:var - sets required environment variable for proxyed electron window url
@@ -32,7 +32,7 @@ npm install -g electron
     ├── build:electron
     ├── launch:var
     └── launch:electron
-
+```
 # @angular/cli 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
 
