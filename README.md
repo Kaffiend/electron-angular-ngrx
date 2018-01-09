@@ -1,4 +1,9 @@
 # ElectronAngularNgrx
+# Mission
+The mission of this project is to provide a simple quick start seed that works with `@angular/cli` not against it or hacked around ejection of the underlying webpack. This is to hopefully keep maintaining this seed's build and development process easy to maintain and build on.
+
+I've taken an alternative approach to some of the issues plagued by angular electron seeds. Most of these use projects like `electron-reload`, `electron-connect` or eject 
+the underlying webpack from the cli to integrate the `webpack-dev-server`. This seed currently uses gulp and various tried and true packages such as `browserlink` to instead proxy the electron window, and the electron process is monitored with nodemon to restart its process on changes during live-reload development workflow.
 
 This project requires Electron.
 Typings are installed automatically.
@@ -36,14 +41,6 @@ npm install -g electron
 # angular/cli 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
 ## Build - Live Reload (development)
 
 Run `npm start` (default start script), `npm run live-reload` or `gulp live-reload` to build, launch and proxy live reloads. 
@@ -63,7 +60,7 @@ The electron build artifacts will be stored in the `dist/electron` directory.
 - [ ] Electron packaging.
 - [ ] Integrate developement extensions redux, devtron.
 - [ ] Add Compodoc.
-
+- [ ] Add contribution guidelines.
 
 ## Running unit tests
 
