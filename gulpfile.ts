@@ -56,7 +56,7 @@ function buildApp() {
 }
 
 function rebuildApp(done) {
-  const rebuildCmd = exec('ng build --delete-output-path false', (err, stdout, stderr) => {
+  exec('ng build --delete-output-path false', (err, stdout, stderr) => {
     if (err) {
       throw err;
     }
