@@ -1,6 +1,6 @@
 # ElectronAngularNgrx
 # Mission
-The mission of this project is to provide a simple quick start seed that works with `@angular/cli` not against it or hacked around ejection of the underlying webpack. This is to hopefully keep maintaining this seed's build and development process easy to maintain and build on.
+The mission of this project is to provide a simple quick start seed that works with `@angular/cli` not against it or hacked around ejection of the underlying webpack. This is to hopefully keep this seed's build and development process easy to maintain and build on.
 
 I've taken an alternative approach to some of the issues plagued by angular electron seeds. Most of these use projects like `electron-reload`, `electron-connect` or eject 
 the underlying webpack from the cli to integrate the `webpack-dev-server`. This seed currently uses gulp and various tried and true packages such as `browserlink` to instead proxy the electron window, and the electron process is monitored with nodemon to restart its process on changes during live-reload development workflow.
