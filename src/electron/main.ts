@@ -15,7 +15,8 @@ const mainWindowSettings: Electron.BrowserWindowConstructorOptions = {
 
 function createWindow() {
   const url =
-    isDev && process.env.LAUNCH_MODE !== 'build' ? 'http://localhost:4200' : `file:///${__dirname}/../index.html`;
+    (isDev && process.env.LAUNCH_MODE !== 'build') || (isDev && process.env.LAUNCH_MODE !== 'HMR')
+     ? 'http://localhost:4200' : `file:///${__dirname}/../index.html`;
   applicationRef = new BrowserWindow(mainWindowSettings);
   applicationRef.loadURL(url);
   if (debugMode) {

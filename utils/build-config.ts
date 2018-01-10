@@ -20,4 +20,16 @@ export const BrowserSyncConfig = {
   server: {
     baseDir: 'dist'
   }
-}
+};
+
+export const HmrBrowserSyncConfig = {
+  open: false,
+  ui: false,
+  logLevel: 'silent',
+  notify: false,
+  port: 4201,
+  proxy: {
+    target: 'http://localhost:4200'
+  }
+};
+

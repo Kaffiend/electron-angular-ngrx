@@ -1,4 +1,4 @@
-import { Paths, BrowserSyncConfig } from './utils/build-config';
+import { Paths, BrowserSyncConfig, HmrBrowserSyncConfig } from './utils/build-config';
 import { exec } from 'child_process';
 import * as gulp from 'gulp';
 import * as typescript from 'gulp-typescript';
@@ -30,6 +30,14 @@ function setLiveReloadVariable(done) {
   done();
 }
 
+function setHmrVariable(done) {
+  env.set({
+    LAUNCH_MODE: 'HMR',
+    NODE_ENV: 'development'
+  });
+  done();
+}
+
 function launchElectron() {
   return exec(`electron ${Paths.electron_dest}main`, (err, stdin, stderr) => {
     if (err) {
@@ -49,11 +57,20 @@ function buildApp() {
 function rebuildApp(done) {
   exec('ng build --delete-output-path false', (err, stdin, stderr) => {
     if (err) {
-      console.log(err);
+      throw err;
     }
     proxyReload();
     return done();
   });
+}
+
+function startHMR(done) {
+  exec('ng serve --hmr -e=hmr', (err, stdin, stderr) => {
+    if (err) {
+      throw err;
+    }
+  });
+    return done();
 }
 
 function proxyInit() {
@@ -62,6 +79,14 @@ function proxyInit() {
 
 function proxyReload() {
   return browserSync.get('LiveProxy').reload();
+}
+
+function proxyHmrInit() {
+  return browserSync.create('HMR-Proxy').init(HmrBrowserSyncConfig);
+}
+
+function proxyHmrReload() {
+  return browserSync.get('HMR-Proxy').reload();
 }
 
 function serveLiveReload(done) {
@@ -82,6 +107,24 @@ function serveLiveReload(done) {
   });
 }
 
+function serveElectronHmr(done) {
+  nodemon({
+    exec: `electron ${Paths.electron_dest}main`,
+    watch: [Paths.electron_dest]
+  }).on('start', () => {
+    try {
+      const active = browserSync.get('HMR-Proxy');
+      if (active) {
+        active.reload();
+        done();
+      }
+    } catch (err) {
+      proxyHmrInit();
+      done();
+    }
+  });
+}
+
 // Series
 gulp.task('build:electron', buildElectron);
 
@@ -96,6 +139,13 @@ gulp.task('rebuild:app', rebuildApp);
 gulp.task('serve:live-reload', serveLiveReload);
 
 gulp.task('live-reload:var', setLiveReloadVariable);
+
+gulp.task('hmr:var', setHmrVariable);
+
+gulp.task('serve:hmr', startHMR);
+
+gulp.task('serve:electron-hmr', serveElectronHmr);
+
 
 // Parallel.
 gulp.task('watch:electron', done => {
@@ -115,7 +165,16 @@ gulp.task(
     'build:app',
     'build:electron',
     'live-reload:var',
-    gulp.parallel('watch:app', 'watch:electron', 'serve:live-reload')
+    gulp.parallel('watch:electron', 'serve:live-reload')
+  )
+);
+
+gulp.task(
+  'hmr',
+  gulp.series(
+    'build:electron',
+    'hmr:var',
+    gulp.parallel('serve:hmr', 'watch:electron', 'serve:electron-hmr')
   )
 );
 
