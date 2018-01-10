@@ -34,7 +34,7 @@ npm install -g electron
 │     ├── watch:app
 │     ├── watch:electron
 │     └── serve:live-reload
-├─┬ hmr
+├─┬ hmr - task chain for launching hrm workflow
 │ └─┬ <series>
 │   ├── build:electron
 │   ├── hmr:var
