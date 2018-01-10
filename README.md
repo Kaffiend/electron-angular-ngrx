@@ -2,13 +2,29 @@
 # Mission
 The mission of this project is to provide a simple quick start seed that works with `@angular/cli` not against it or hacked around ejection of the underlying webpack. This is to hopefully keep this seed's build and development process easy to maintain and build on.
 
-I've taken an alternative approach to some of the issues plagued by angular electron seeds. Most of these use projects like `electron-reload`, `electron-connect` or eject 
-the underlying webpack from the cli to integrate the `webpack-dev-server`. This seed currently uses gulp and various tried and true packages such as `browserlink` to instead proxy the electron window, and the electron process is monitored with nodemon to restart its process on changes during live-reload development workflow.
+I've taken an alternative approach to some of the issues plagued by angular electron seeds. This seed currently uses gulp and various tried and true packages such as `browserlink` to instead proxy the electron window, and the electron process is monitored with nodemon to restart its process on changes during live-reload development workflow.
 
 This project requires Electron.
 Typings are installed automatically.
 ```bash
 npm install -g electron
+```
+
+# Project Structure
+```
+├───src - root.
+│   │
+│   ├───app - main angular app entry point.
+│   │
+│   ├───assets - any client assets, images etc..
+│   │
+│   ├───electron - electron main process spefic code.
+│   │
+│   └───environments - dev environments for cli.
+│
+├───typings - custom typings declarations.
+│
+└───utils - build process related files.
 ```
 
 # Tasks - Build Process
@@ -23,6 +39,7 @@ npm install -g electron
 ├── hmr:var - sets required environment variable for proxyed electron window with hmr.
 ├── serve:hmr - calls `ng serve -hmr -e=hmr` to be proxyed by browserlink
 ├── serve:electron-hmr proxy electron window with browserlink for hmr binding.
+├── start:docs - build and serve compodoc on localhost:8080gulp
 ├── watch:electron - watcher task for changes on `src/electron`
 ├── watch:app - watcher task on angular code
 ├─┬ live-reload - task chain for launching live-reload workflow
@@ -42,7 +59,7 @@ npm install -g electron
 │     ├── serve:hmr
 │     ├── watch:electron
 │     └── serve:electron-hmr
-└─┬ electron:launch - task chain for launching single run with no proxy.
+└─┬ launch - task chain for launching single run with no proxy.
   └─┬ <series> - this group of tasks run in series
     ├── build:app
     ├── build:electron
