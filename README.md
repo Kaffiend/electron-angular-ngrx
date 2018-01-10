@@ -2,7 +2,7 @@
 # Mission
 The mission of this project is to provide a simple quick start seed that works with `@angular/cli` not against it or hacked around ejection of the underlying webpack. This is to hopefully keep this seed's build and development process easy to maintain and build on.
 
-I've taken an alternative approach to some of the issues plagued by angular electron seeds. This seed currently uses gulp and various tried and true packages such as `browserlink` to instead proxy the electron window, and the electron process is monitored with nodemon to restart its process on changes during live-reload development workflow.
+This seed takes a low impact approach to some of the issues plagued by angular electron seeds. This seed currently uses gulp and various, tried and true packages such as `browserlink` to instead proxy the electron window, and the electron process is monitored with nodemon to restart its process on changes during live-reload development workflow.
 
 This project requires Electron and Gulp-CLI.
 Typings are installed automatically.
@@ -13,19 +13,22 @@ npm install -g gulp-cli
 
 # Project Structure
 ```
-├───src - root.
-│   │
-│   ├───app - main angular app entry point.
-│   │
-│   ├───assets - any client assets, images etc..
-│   │
-│   ├───electron - electron main process spefic code.
-│   │
-│   └───environments - dev environments for cli.
-│
-├───typings - custom typings declarations.
-│
-└───utils - build process related files.
+├── dist                <--Angular Build Artifacts
+|  ├── electron         <--Electron Build Artifacts
+├── e2e                 <--End-To-End Tests (Protractor)
+├── gulpfile.ts         <--Build Entry Point
+├── src
+|  ├── app              <--Angular App Code
+|  ├── assets           <--Images, Fonts, Icons etc.
+|  ├── electron         <--Main Electron Process Code
+|  ├── environments     <--Dev, Prod, and HMR Environment Files
+|  ├── hmr.ts           <--HMR Bootstraping Utility
+|  ├── main.ts          <--Angular Entry Point (HMR Logic Included)
+├── typings             <--Custom Typings
+└── utils               <--Build Process Utilities (See Build Process)
+   ├── gulp-config.ts   <--Static Build Configuration
+   ├── gulp-parallel.ts <--Parallel Build Utilities
+   └── gulp-series.ts   <--Series Build Utilities
 ```
 
 # Tasks - Build Process
@@ -89,6 +92,7 @@ The electron build artifacts will be stored in the `dist/electron` directory.
 
 ## ToDo
 - [x] Integrate HMR (Hot Module Relplacement) workflow.
+- [ ] Clean up tasks in a uniform manner and self-documenting.
 - [ ] Integrate simple NGRX with HMR.
 - [ ] Electron packaging.
 - [ ] Integrate developement extensions redux, devtron.
