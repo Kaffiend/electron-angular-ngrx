@@ -1,3 +1,7 @@
+# Electron Angular NGRX
+
+# Table of Contents
+
 - [Getting Started](#getting-started)
 - [Mission](#mission)
 - [Project Structure](#project-structure)
