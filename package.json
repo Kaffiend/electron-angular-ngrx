@@ -15,9 +15,9 @@
     "ng": "ng",
     "live-reload": "gulp live-reload",
     "launch": "gulp electron:launch",
-    "start": "gulp live-reload",
+    "start": "gulp hmr",
     "build": "gulp electron:launch",
-    "hmr": "ng serve --hmr -e=hmr",
+    "hmr": "gulp hmr",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

@@ -55,7 +55,7 @@ The angular build artifacts will be stored in the `dist/` directory.
 The electron build artifacts will be stored in the `dist/electron` directory.
 
 ## ToDo
-- [ ] Integrate HMR (Hot Module Relplacement) workflow.
+- [x] Integrate HMR (Hot Module Relplacement) workflow.
 - [ ] Integrate simple NGRX with HMR.
 - [ ] Electron packaging.
 - [ ] Integrate developement extensions redux, devtron.
