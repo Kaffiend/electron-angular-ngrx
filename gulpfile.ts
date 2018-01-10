@@ -78,7 +78,7 @@ gulp.task(
 
 gulp.task(
   'hmr',
-  gulp.series('build:electron', 'hmr:var', gulp.parallel('serve:hmr', 'watch:electron', 'serve:electron-hmr'))
+  gulp.series('build:electron', 'hmr:var', gulp.parallel('serve:hmr', 'watch:electron'))
 );
 
 gulp.task('default', gulp.series('build:app', 'build:electron', 'launch:var', 'launch:electron'));
