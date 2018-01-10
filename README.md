@@ -18,8 +18,11 @@ npm install -g electron
 ├── launch:var - sets required environment variable for non-proxyed electron window url
 ├── launch:electron - launches electron process on `dist/electron`
 ├── rebuild:app - called by watcher to rebuild angular code.
-├── serve:live-reload - proxyies electron window url with browserlink for live reload
+├── serve:live-reload - proxy electron window url with browserlink for live reload
 ├── live-reload:var - sets required environment variable for proxyed electron window url.
+├── hmr:var - sets required environment variable for proxyed electron window with hmr.
+├── serve:hmr - calls `ng serve -hmr -e=hmr` to be proxyed by browserlink
+├── serve:electron-hmr proxy electron window with browserlink for hmr binding.
 ├── watch:electron - watcher task for changes on `src/electron`
 ├── watch:app - watcher task on angular code
 ├─┬ live-reload - task chain for launching live-reload workflow
@@ -31,6 +34,14 @@ npm install -g electron
 │     ├── watch:app
 │     ├── watch:electron
 │     └── serve:live-reload
+├─┬ hmr
+│ └─┬ <series>
+│   ├── build:electron
+│   ├── hmr:var
+│   └─┬ <parallel>
+│     ├── serve:hmr
+│     ├── watch:electron
+│     └── serve:electron-hmr
 └─┬ electron:launch - task chain for launching single run with no proxy.
   └─┬ <series>
     ├── build:app
@@ -40,6 +51,9 @@ npm install -g electron
 ```
 # angular/cli 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
+
+## Build - HMR (development)
+Run `npm start` (default script) or `gulp hmr` to build,  and launch and non-proxyed build with HMR. 
 
 ## Build - Live Reload (development)
 
@@ -53,6 +67,7 @@ The Render Process will utlize live reloads to reload changes on save on angular
 Run `npm run launch` or `gulp electron:launch` to build,  and launch and non-proxyed build. 
 The angular build artifacts will be stored in the `dist/` directory.
 The electron build artifacts will be stored in the `dist/electron` directory.
+
 
 ## ToDo
 - [x] Integrate HMR (Hot Module Relplacement) workflow.
