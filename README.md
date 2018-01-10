@@ -57,7 +57,7 @@ Run `npm start` (default script) or `gulp hmr` to build,  and launch and non-pro
 
 ## Build - Live Reload (development)
 
-Run `npm start` (default start script), `npm run live-reload` or `gulp live-reload` to build, launch and proxy live reloads. 
+Run `npm run live-reload` or `gulp live-reload` to build, launch and proxy live reloads. 
 The angular build artifacts will be stored in the `dist/` directory.
 The electron build artifacts will be stored in the `dist/electron` directory.
 The Electron main process will be restarted automatically if the electron code changes.
