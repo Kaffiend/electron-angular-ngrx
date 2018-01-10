@@ -6,10 +6,10 @@
 - [Mission](#mission)
 - [Project Structure](#project-structure)
 - [Build Process](#build-process)
-    - [Tasks](#tasks)
     - [Build - HMR (development)](#build---hmr-development)
     - [Build - Live Reload (development)](#build---live-reload-development)
     - [Build - One-Shot Launch (development)](#build---one-shot-launch-development)
+    - [Tasks](#tasks)
 - [ToDo](#todo)
 - [angular/cli](#angularcli)
     - [Running unit tests](#running-unit-tests)
@@ -51,6 +51,23 @@ This seed takes a low impact approach to some of the issues plagued by angular e
 
 # Build Process
 
+
+## Build - HMR (development)
+Run `npm start` (default script) or `gulp hmr` to build,  and launch and non-proxyed build with HMR. 
+
+## Build - Live Reload (development)
+
+Run `npm run live-reload` or `gulp live-reload` to build, launch and proxy live reloads. 
+The angular build artifacts will be stored in the `dist/` directory.
+The electron build artifacts will be stored in the `dist/electron` directory.
+The Electron main process will be restarted automatically if the electron code changes.
+The Render Process will utlize live reloads to reload changes on save on angular code.
+
+## Build - One-Shot Launch (development)
+Run `npm run launch` or `gulp electron:launch` to build,  and launch and non-proxyed build. 
+The angular build artifacts will be stored in the `dist/` directory.
+The electron build artifacts will be stored in the `dist/electron` directory.
+
 ## Tasks
 ```
 ├── build:electron - builds `src/electron` => `dist/electron`
@@ -90,21 +107,6 @@ This seed takes a low impact approach to some of the issues plagued by angular e
     ├── launch:var
     └── launch:electron
 ```
-## Build - HMR (development)
-Run `npm start` (default script) or `gulp hmr` to build,  and launch and non-proxyed build with HMR. 
-
-## Build - Live Reload (development)
-
-Run `npm run live-reload` or `gulp live-reload` to build, launch and proxy live reloads. 
-The angular build artifacts will be stored in the `dist/` directory.
-The electron build artifacts will be stored in the `dist/electron` directory.
-The Electron main process will be restarted automatically if the electron code changes.
-The Render Process will utlize live reloads to reload changes on save on angular code.
-
-## Build - One-Shot Launch (development)
-Run `npm run launch` or `gulp electron:launch` to build,  and launch and non-proxyed build. 
-The angular build artifacts will be stored in the `dist/` directory.
-The electron build artifacts will be stored in the `dist/electron` directory.
 
 # ToDo
 - [x] Integrate HMR (Hot Module Relplacement) workflow.
