@@ -1,9 +1,11 @@
-import {
-  Paths,
-  LIVE_RELOAD_PROXY,
-  LiveReloadBrowserSyncConfig
-} from './gulp-config';
+/**
+ * This File is for all tasks that can be run in series
+ * without blocking the event stream and preventing downstream
+ * tasks from running.
+ */
+import { Paths, LIVE_RELOAD_PROXY, LiveReloadBrowserSyncConfig } from './gulp-config';
 import { exec } from 'child_process';
+import { task, TaskFunction } from 'gulp';
 import * as typescript from 'gulp-typescript';
 import * as env from 'gulp-env';
 import * as gulp from 'gulp';
@@ -13,27 +15,39 @@ import * as browserSync from 'browser-sync';
  * Call CLI 'ng build' function to clean the dist directory if it exists
  * and build the angular code.
  */
-export function buildApp() {
-  return exec('ng build', (err, stdout, stderr) => {
-    if (err) {
-      throw err;
-    }
+export const buildAppTask = <TaskFunction>function buildApp() {
+  const buildCmd = exec('ng build');
+  // pipe cli output to STDOUT so we can see it working.
+  buildCmd.stdout.pipe(process.stdout);
+  buildCmd.on('error', err => {
+    throw err;
   });
-}
+  return buildCmd;
+};
+// Gulp-CLI documentation and task registration.
+buildAppTask.displayName = `build:app`;
+buildAppTask.description = `Builds the Angular code via cli.`;
 
 /**
  * This task is only used for the Live-Reload Proxy.
  * @param done - Callback function to signal task completion.
  */
-export function rebuildApp(done) {
-  exec('ng build --delete-output-path false', (err, stdout, stderr) => {
-    if (err) {
-      throw err;
-    }
-    proxyReload(LIVE_RELOAD_PROXY, LiveReloadBrowserSyncConfig);
-    return done();
+export const rebuildAppTask = <TaskFunction>function rebuildApp(done) {
+  const buildCmd = exec('ng build --delete-output-path false');
+  // pipe cli output to STDOUT so we can see it working.
+  buildCmd.stdout.pipe(process.stdout);
+  buildCmd.stdout.on('data', data => {
+    proxyReload('LiveReload', LiveReloadBrowserSyncConfig);
+    done();
   });
-}
+  buildCmd.on('error', err => {
+    throw err;
+  });
+  return buildCmd;
+};
+// Gulp-CLI documentation and task registration.
+rebuildAppTask.displayName = `rebuild:app`;
+rebuildAppTask.description = `rebuilds the angular app output to 'dist' directory`;
 
 export function buildElectron() {
   return gulp

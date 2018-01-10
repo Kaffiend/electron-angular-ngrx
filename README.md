@@ -4,10 +4,11 @@ The mission of this project is to provide a simple quick start seed that works w
 
 I've taken an alternative approach to some of the issues plagued by angular electron seeds. This seed currently uses gulp and various tried and true packages such as `browserlink` to instead proxy the electron window, and the electron process is monitored with nodemon to restart its process on changes during live-reload development workflow.
 
-This project requires Electron.
+This project requires Electron and Gulp-CLI.
 Typings are installed automatically.
 ```bash
 npm install -g electron
+npm install -g gulp-cli
 ```
 
 # Project Structure

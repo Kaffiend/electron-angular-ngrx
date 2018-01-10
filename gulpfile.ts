@@ -5,6 +5,7 @@ import {
   LiveReloadBrowserSyncConfig,
   HMR_PROXY
 } from './utils/gulp-config';
+import { TaskFunction, TaskCallback,  } from 'gulp';
 import { exec } from 'child_process';
 import * as gulp from 'gulp';
 import * as typescript from 'gulp-typescript';
@@ -15,8 +16,8 @@ import * as env from 'gulp-env';
 
 // Pipeline
 import {
-  buildApp,
-  rebuildApp,
+  buildAppTask,
+  rebuildAppTask,
   buildElectron,
   setHmrVariable,
   setLaunchVariable,
@@ -38,13 +39,13 @@ import {
   */
 gulp.task('build:electron', buildElectron);
 
-gulp.task('build:app', buildApp);
+gulp.task(buildAppTask);
 
 gulp.task('launch:var', setLaunchVariable);
 
 gulp.task('launch:electron', launchElectron);
 
-gulp.task('rebuild:app', rebuildApp);
+gulp.task(rebuildAppTask);
 
 gulp.task('serve:live-reload', serveLiveReload);
 
@@ -59,13 +60,13 @@ gulp.task('serve:electron-hmr', serveElectronHmr);
 gulp.task('start:docs', startCompodoc);
 
 // Parallel.
-gulp.task('watch:electron', done => {
+gulp.task('watch:electron', (done) => {
   gulp.watch(Paths.electron_src, buildElectron);
   done();
 });
 
 gulp.task('watch:app', done => {
-  gulp.watch(Paths.app_src, rebuildApp);
+  gulp.watch(Paths.app_src, rebuildAppTask);
   done();
 });
 
