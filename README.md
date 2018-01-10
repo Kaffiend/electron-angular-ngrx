@@ -1,15 +1,29 @@
-# ElectronAngularNgrx
-# Mission
-The mission of this project is to provide a simple quick start seed that works with `@angular/cli` not against it or hacked around ejection of the underlying webpack. This is to hopefully keep this seed's build and development process easy to maintain and build on.
+- [Getting Started](#getting-started)
+- [Mission](#mission)
+- [Project Structure](#project-structure)
+- [Build Process](#build-process)
+    - [Tasks](#tasks)
+    - [Build - HMR (development)](#build---hmr-development)
+    - [Build - Live Reload (development)](#build---live-reload-development)
+    - [Build - One-Shot Launch (development)](#build---one-shot-launch-development)
+- [ToDo](#todo)
+- [angular/cli](#angularcli)
+    - [Running unit tests](#running-unit-tests)
+    - [Running end-to-end tests](#running-end-to-end-tests)
+    - [Further help](#further-help)
 
-This seed takes a low impact approach to some of the issues plagued by angular electron seeds. This seed currently uses gulp and various, tried and true packages such as `browserlink` to instead proxy the electron window, and the electron process is monitored with nodemon to restart its process on changes during live-reload development workflow.
-
+# Getting Started
 This project requires Electron and Gulp-CLI.
 Typings are installed automatically.
 ```bash
 npm install -g electron
 npm install -g gulp-cli
 ```
+
+# Mission
+The mission of this project is to provide a simple quick start seed that works with `@angular/cli` not against it or hacked around ejection of the underlying webpack. This is to hopefully keep this seed's build and development process easy to maintain and build on.
+
+This seed takes a low impact approach to some of the issues plagued by angular electron seeds. This seed currently uses gulp and various, tried and true packages such as `browserlink` to instead proxy the electron window, and the electron process is monitored with nodemon to restart its process on changes during live-reload development workflow.
 
 # Project Structure
 ```
@@ -31,7 +45,9 @@ npm install -g gulp-cli
    └── gulp-series.ts   <--Series Build Utilities
 ```
 
-# Tasks - Build Process
+# Build Process
+
+## Tasks
 ```
 ├── build:electron - builds `src/electron` => `dist/electron`
 ├── build:app - calls `ng build` on angular app => `dist/`
@@ -55,7 +71,7 @@ npm install -g gulp-cli
 │     ├── watch:app
 │     ├── watch:electron
 │     └── serve:live-reload
-├─┬ hmr - task chain for launching hrm workflow
+├─┬ hmr - task chain for launching HMR workflow
 │ └─┬ <series> - this group of tasks run in series
 │   ├── build:electron
 │   ├── hmr:var
@@ -70,9 +86,6 @@ npm install -g gulp-cli
     ├── launch:var
     └── launch:electron
 ```
-# angular/cli 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
-
 ## Build - HMR (development)
 Run `npm start` (default script) or `gulp hmr` to build,  and launch and non-proxyed build with HMR. 
 
@@ -89,8 +102,7 @@ Run `npm run launch` or `gulp electron:launch` to build,  and launch and non-pro
 The angular build artifacts will be stored in the `dist/` directory.
 The electron build artifacts will be stored in the `dist/electron` directory.
 
-
-## ToDo
+# ToDo
 - [x] Integrate HMR (Hot Module Relplacement) workflow.
 - [ ] Clean up tasks in a uniform manner and self-documenting.
 - [ ] Integrate simple NGRX with HMR.
@@ -98,6 +110,10 @@ The electron build artifacts will be stored in the `dist/electron` directory.
 - [ ] Integrate developement extensions redux, devtron.
 - [x] Add Compodoc.
 - [ ] Add contribution guidelines.
+
+# angular/cli 
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
+
 
 ## Running unit tests
 
