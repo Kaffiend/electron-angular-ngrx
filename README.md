@@ -26,24 +26,24 @@ npm install -g electron
 ├── watch:electron - watcher task for changes on `src/electron`
 ├── watch:app - watcher task on angular code
 ├─┬ live-reload - task chain for launching live-reload workflow
-│ └─┬ <series>
+│ └─┬ <series> - this group of tasks run in series
 │   ├── build:app
 │   ├── build:electron
 │   ├── live-reload:var
-│   └─┬ <parallel>
+│   └─┬ <parallel> - this group of tasks run in parallel
 │     ├── watch:app
 │     ├── watch:electron
 │     └── serve:live-reload
 ├─┬ hmr - task chain for launching hrm workflow
-│ └─┬ <series>
+│ └─┬ <series> - this group of tasks run in series
 │   ├── build:electron
 │   ├── hmr:var
-│   └─┬ <parallel>
+│   └─┬ <parallel> this group of tasks run in parallel
 │     ├── serve:hmr
 │     ├── watch:electron
 │     └── serve:electron-hmr
 └─┬ electron:launch - task chain for launching single run with no proxy.
-  └─┬ <series>
+  └─┬ <series> - this group of tasks run in series
     ├── build:app
     ├── build:electron
     ├── launch:var
