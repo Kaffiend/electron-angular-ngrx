@@ -54,6 +54,7 @@
     "concurrently": "^3.5.1",
     "electron": "^1.7.10",
     "gulp": "^4.0.0",
+    "gulp-cli": "^2.0.0",
     "gulp-env": "^0.4.0",
     "gulp-nodemon": "^2.2.1",
     "gulp-typescript": "^3.2.3",

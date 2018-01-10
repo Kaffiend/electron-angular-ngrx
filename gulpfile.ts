@@ -1,4 +1,10 @@
-import { Paths, BrowserSyncConfig, HmrBrowserSyncConfig } from './utils/build-config';
+import {
+  Paths,
+  HmrBrowserSyncConfig,
+  LIVE_RELOAD_PROXY,
+  LiveReloadBrowserSyncConfig,
+  HMR_PROXY
+} from './utils/gulp-config';
 import { exec } from 'child_process';
 import * as gulp from 'gulp';
 import * as typescript from 'gulp-typescript';
@@ -8,102 +14,22 @@ import * as compodoc from '@compodoc/gulp-compodoc';
 import * as env from 'gulp-env';
 
 // Pipeline
-function buildElectron() {
-  return gulp
-    .src([Paths.electron_src])
-    .pipe(typescript())
-    .pipe(gulp.dest(Paths.electron_dest));
-}
+import {
+  buildApp,
+  rebuildApp,
+  buildElectron,
+  setHmrVariable,
+  setLaunchVariable,
+  setLiveReloadVariable,
+  proxyInit,
+  proxyReload
+} from './utils/gulp-series';
 
-function setLaunchVariable(done) {
-  env.set({
-    LAUNCH_MODE: 'build',
-    NODE_ENV: 'development'
-  });
-  done();
-}
-
-function setLiveReloadVariable(done) {
-  env.set({
-    LAUNCH_MODE: 'LiveReload',
-    NODE_ENV: 'development'
-  });
-  done();
-}
-
-function setHmrVariable(done) {
-  env.set({
-    LAUNCH_MODE: 'HMR',
-    NODE_ENV: 'development'
-  });
-  done();
-}
-
-function launchElectron() {
-  return exec(`electron ${Paths.electron_dest}main`, (err, stdout, stderr) => {
-    if (err) {
-      throw err;
-    }
-  });
-}
-
-function buildApp() {
-  return exec('ng build', (err, stdout, stderr) => {
-    if (err) {
-      throw err;
-    }
-  });
-}
-
-function rebuildApp(done) {
-  exec('ng build --delete-output-path false', (err, stdout, stderr) => {
-    if (err) {
-      throw err;
-    }
-    proxyReload();
-    return done();
-  });
-}
-
-function startHMR(done) {
-  const hmrCmd = exec('ng serve --hmr -e=hmr --delete-output-path false');
-  hmrCmd.stdout.on('data', data => {
-    console.log(String(data));
-    if (String(data) === 'webpack: Compiled successfully.\n') {
-      proxyHmrReload();
-      done();
-    }
-  });
-  hmrCmd.on('error', err => {
-    throw err;
-  });
-}
-
-function startCompodoc(done) {
-  return gulp.src('src/**/*.ts').pipe(
-    compodoc({
-      output: 'docs',
-      tsconfig: 'src/tsconfig.json',
-      serve: true
-    })
-  );
-}
-
-function proxyInit() {
-  return browserSync.create('LiveProxy').init(BrowserSyncConfig);
-}
-
-function proxyReload() {
-  return browserSync.get('LiveProxy').reload();
-}
-
-function proxyHmrInit() {
-  return browserSync.create('HMR-Proxy').init(HmrBrowserSyncConfig);
-}
-
-function proxyHmrReload() {
-  return browserSync.get('HMR-Proxy').reload();
-}
+import {
+  launchElectron,
+  startCompodoc,
+  startHMR
+} from './utils/gulp-parallel';
 
 function serveLiveReload(done) {
   nodemon({
@@ -111,13 +37,13 @@ function serveLiveReload(done) {
     watch: [Paths.electron_dest]
   }).on('start', () => {
     try {
-      const active = browserSync.get('LiveProxy');
+      const active = browserSync.get('Live-Proxy');
       if (active) {
         active.reload();
         done();
       }
     } catch (err) {
-      proxyInit();
+      proxyInit(LIVE_RELOAD_PROXY, LiveReloadBrowserSyncConfig);
       done();
     }
   });
@@ -135,13 +61,12 @@ function serveElectronHmr(done) {
         done();
       }
     } catch (err) {
-      proxyHmrInit();
+      proxyInit(HMR_PROXY, HmrBrowserSyncConfig);
       done();
     }
   });
 }
 
-// Series
 gulp.task('build:electron', buildElectron);
 
 gulp.task('build:app', buildApp);

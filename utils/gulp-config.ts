@@ -1,3 +1,8 @@
+/**
+ * Constants for switching proxy settings.
+ */
+export const HMR_PROXY = 'HMR-Proxy';
+export const LIVE_RELOAD_PROXY = 'LiveReload-Proxy';
 
 /**
  * Application paths used for gulp plugins.
@@ -11,7 +16,7 @@ export const Paths = {
 /**
  * Live-Reload configuration for electron window proxy.
  */
-export const BrowserSyncConfig = {
+export const LiveReloadBrowserSyncConfig = {
   open: false,
   ui: false,
   logLevel: 'silent',
@@ -32,4 +37,3 @@ export const HmrBrowserSyncConfig = {
     target: 'http://localhost:4200'
   }
 };
-
