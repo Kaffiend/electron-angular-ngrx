@@ -6,7 +6,6 @@ import * as browserSync from 'browser-sync';
 import * as nodemon from 'gulp-nodemon';
 import * as compodoc from '@compodoc/gulp-compodoc';
 import * as env from 'gulp-env';
-import { COMPILER_OPTIONS } from '@angular/core/src/linker/compiler';
 
 // Pipeline
 function buildElectron() {
@@ -57,7 +56,7 @@ function buildApp() {
 }
 
 function rebuildApp(done) {
-  exec('ng build --delete-output-path false', (err, stdout, stderr) => {
+  const rebuildCmd = exec('ng build --delete-output-path false', (err, stdout, stderr) => {
     if (err) {
       throw err;
     }
@@ -67,16 +66,17 @@ function rebuildApp(done) {
 }
 
 function startHMR(done) {
-  exec('ng serve --hmr -e=hmr', (err, stdout, stderr) => {
-    if (err) {
-      throw err;
-    }
-    if (stdout) {
+  const hmrCmd = exec('ng serve --hmr -e=hmr --delete-output-path false');
+  hmrCmd.stdout.on('data', data => {
+    if (String(data) === 'webpack: Compiled successfully.\n') {
       console.log('Marco!!!');
-      // no polo.... :(
+      // POLO!!!!
+      done();
     }
   });
-  return done();
+  hmrCmd.on('error', err => {
+    throw err;
+  });
 }
 
 function startCompodoc(done) {
