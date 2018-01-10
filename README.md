@@ -74,7 +74,7 @@ The electron build artifacts will be stored in the `dist/electron` directory.
 - [ ] Integrate simple NGRX with HMR.
 - [ ] Electron packaging.
 - [ ] Integrate developement extensions redux, devtron.
-- [ ] Add Compodoc.
+- [x] Add Compodoc.
 - [ ] Add contribution guidelines.
 
 ## Running unit tests
