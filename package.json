@@ -14,7 +14,7 @@
   "scripts": {
     "ng": "ng",
     "live-reload": "gulp live-reload",
-    "launch": "gulp electron:launch",
+    "launch": "gulp",
     "start": "gulp hmr",
     "build": "gulp electron:launch",
     "hmr": "gulp hmr",

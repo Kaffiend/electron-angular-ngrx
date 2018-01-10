@@ -3,17 +3,16 @@ import * as gulp from 'gulp';
 import { exec } from 'child_process';
 import * as compodoc from '@compodoc/gulp-compodoc';
 import * as browserSync from 'browser-sync';
+import * as nodemon from 'gulp-nodemon';
 import { proxyReload, proxyInit } from './gulp-series';
 
 /**
  * Calls electron on the main process in the 'dist/electron' directory
  */
-export function launchElectron() {
-  return exec(`electron ${Paths.electron_dest}main`, (err, stdout, stderr) => {
-    if (err) {
-      throw err;
-    }
-  });
+export function launchElectron(done) {
+  const electronCmd = exec(`electron ${Paths.electron_dest}main`);
+  electronCmd.stdout.pipe(process.stdout);
+  done();
 }
 
 /**
@@ -48,4 +47,40 @@ export function startCompodoc(done) {
       serve: true
     })
   );
+}
+
+export function serveLiveReload(done) {
+  nodemon({
+    exec: `electron ${Paths.electron_dest}main`,
+    watch: [Paths.electron_dest]
+  }).on('start', () => {
+    try {
+      const active = browserSync.get('Live-Proxy');
+      if (active) {
+        active.reload();
+        done();
+      }
+    } catch (err) {
+      proxyInit(LIVE_RELOAD_PROXY, LiveReloadBrowserSyncConfig);
+      done();
+    }
+  });
+}
+
+export function serveElectronHmr(done) {
+  nodemon({
+    exec: `electron ${Paths.electron_dest}main`,
+    watch: [Paths.electron_dest]
+  }).on('start', () => {
+    try {
+      const active = browserSync.get('HMR-Proxy');
+      if (active) {
+        active.reload();
+        done();
+      }
+    } catch (err) {
+      proxyInit(HMR_PROXY, HmrBrowserSyncConfig);
+      done();
+    }
+  });
 }

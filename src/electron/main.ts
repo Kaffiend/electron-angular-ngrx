@@ -14,9 +14,10 @@ const mainWindowSettings: Electron.BrowserWindowConstructorOptions = {
 };
 
 function createWindow() {
+  // TODO: account for packaging builds or reuse 'build'.
   const url =
-    (isDev && process.env.LAUNCH_MODE !== 'build') || (isDev && process.env.LAUNCH_MODE !== 'HMR')
-     ? 'http://localhost:4200' : `file:///${__dirname}/../index.html`;
+    isDev && process.env.LAUNCH_MODE !== 'build' ? 'http://localhost:4200' : `file:///${__dirname}/../index.html`;
+  console.log(`Main Window Proxy: ${url}`);
   applicationRef = new BrowserWindow(mainWindowSettings);
   applicationRef.loadURL(url);
   if (debugMode) {

@@ -28,45 +28,14 @@ import {
 import {
   launchElectron,
   startCompodoc,
-  startHMR
+  startHMR,
+  serveLiveReload,
+  serveElectronHmr
 } from './utils/gulp-parallel';
 
-function serveLiveReload(done) {
-  nodemon({
-    exec: `electron ${Paths.electron_dest}main`,
-    watch: [Paths.electron_dest]
-  }).on('start', () => {
-    try {
-      const active = browserSync.get('Live-Proxy');
-      if (active) {
-        active.reload();
-        done();
-      }
-    } catch (err) {
-      proxyInit(LIVE_RELOAD_PROXY, LiveReloadBrowserSyncConfig);
-      done();
-    }
-  });
-}
-
-function serveElectronHmr(done) {
-  nodemon({
-    exec: `electron ${Paths.electron_dest}main`,
-    watch: [Paths.electron_dest]
-  }).on('start', () => {
-    try {
-      const active = browserSync.get('HMR-Proxy');
-      if (active) {
-        active.reload();
-        done();
-      }
-    } catch (err) {
-      proxyInit(HMR_PROXY, HmrBrowserSyncConfig);
-      done();
-    }
-  });
-}
-
+ /**
+  * Gulp individual task wrappers.
+  */
 gulp.task('build:electron', buildElectron);
 
 gulp.task('build:app', buildApp);
@@ -100,7 +69,7 @@ gulp.task('watch:app', done => {
   done();
 });
 
-// Chains.
+// Gulp Task Chains.
 gulp.task(
   'live-reload',
   gulp.series('build:app', 'build:electron', 'live-reload:var', gulp.parallel('watch:electron', 'serve:live-reload'))
@@ -111,4 +80,4 @@ gulp.task(
   gulp.series('build:electron', 'hmr:var', gulp.parallel('serve:hmr', 'watch:electron', 'serve:electron-hmr'))
 );
 
-gulp.task('launch', gulp.series('build:app', 'build:electron', 'launch:var', 'launch:electron'));
+gulp.task('default', gulp.series('build:app', 'build:electron', 'launch:var', 'launch:electron'));
