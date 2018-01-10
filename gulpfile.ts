@@ -41,7 +41,7 @@ function setHmrVariable(done) {
 }
 
 function launchElectron() {
-  return exec(`electron ${Paths.electron_dest}main`, (err, stdin, stderr) => {
+  return exec(`electron ${Paths.electron_dest}main`, (err, stdout, stderr) => {
     if (err) {
       throw err;
     }
@@ -49,7 +49,7 @@ function launchElectron() {
 }
 
 function buildApp() {
-  return exec('ng build', (err, stdin, stderr) => {
+  return exec('ng build', (err, stdout, stderr) => {
     if (err) {
       throw err;
     }
@@ -57,7 +57,7 @@ function buildApp() {
 }
 
 function rebuildApp(done) {
-  exec('ng build --delete-output-path false', (err, stdin, stderr) => {
+  exec('ng build --delete-output-path false', (err, stdout, stderr) => {
     if (err) {
       throw err;
     }
@@ -67,9 +67,13 @@ function rebuildApp(done) {
 }
 
 function startHMR(done) {
-  exec('ng serve --hmr -e=hmr', (err, stdin, stderr) => {
+  exec('ng serve --hmr -e=hmr', (err, stdout, stderr) => {
     if (err) {
       throw err;
+    }
+    if (stdout) {
+      console.log('Marco!!!');
+      // no polo.... :(
     }
   });
   return done();
