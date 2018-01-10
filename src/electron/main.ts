@@ -13,15 +13,6 @@ const mainWindowSettings: Electron.BrowserWindowConstructorOptions = {
   frame: true
 };
 
-function initMainListener() {
-  ipcMain.on('ELECTRON_BRIDGE_HOST', (event, msg) => {
-    console.log('reload msg received', msg);
-    if (msg === 'ping') {
-      event.sender.send('ELECTRON_BRIDGE_CLIENT', 'pong');
-    }
-  });
-}
-
 function createWindow() {
   const url =
     isDev && process.env.LAUNCH_MODE !== 'build' ? 'http://localhost:4200' : `file:///${__dirname}/../index.html`;
@@ -37,15 +28,12 @@ function createWindow() {
     // when you should delete the corresponding element.
     applicationRef = null;
   });
-
-  initMainListener();
 }
 
 app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    // TODO perhaps hook this and wait for message bus before quitting?
     app.quit();
   }
 });
