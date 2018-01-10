@@ -24,7 +24,7 @@ export function startHMR(done) {
   hmrCmd.stdout.on('data', data => {
     console.log(String(data));
     if (String(data) === 'webpack: Compiled successfully.\n') {
-      proxyReload('HMR', HmrBrowserSyncConfig);
+      proxyReload(HMR_PROXY, HmrBrowserSyncConfig);
       done();
     }
   });
@@ -54,16 +54,8 @@ export function serveLiveReload(done) {
     exec: `electron ${Paths.electron_dest}main`,
     watch: [Paths.electron_dest]
   }).on('start', () => {
-    try {
-      const active = browserSync.get('Live-Proxy');
-      if (active) {
-        active.reload();
-        done();
-      }
-    } catch (err) {
-      proxyInit(LIVE_RELOAD_PROXY, LiveReloadBrowserSyncConfig);
-      done();
-    }
+    proxyReload(LIVE_RELOAD_PROXY, LiveReloadBrowserSyncConfig);
+    done();
   });
 }
 
@@ -73,7 +65,7 @@ export function serveElectronHmr(done) {
     watch: [Paths.electron_dest]
   }).on('start', () => {
     try {
-      const active = browserSync.get('HMR-Proxy');
+      const active = browserSync.get(HMR_PROXY);
       if (active) {
         active.reload();
         done();

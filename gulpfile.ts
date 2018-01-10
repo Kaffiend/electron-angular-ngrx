@@ -73,7 +73,7 @@ gulp.task('watch:app', done => {
 // Gulp Task Chains.
 gulp.task(
   'live-reload',
-  gulp.series('build:app', 'build:electron', 'live-reload:var', gulp.parallel('watch:electron', 'serve:live-reload'))
+  gulp.series('build:app', 'build:electron', 'live-reload:var', gulp.parallel('watch:electron', 'watch:app', 'serve:live-reload'))
 );
 
 gulp.task(

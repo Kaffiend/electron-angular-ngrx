@@ -37,7 +37,7 @@ export const rebuildAppTask = <TaskFunction>function rebuildApp(done) {
   // pipe cli output to STDOUT so we can see it working.
   buildCmd.stdout.pipe(process.stdout);
   buildCmd.stdout.on('data', data => {
-    proxyReload('LiveReload', LiveReloadBrowserSyncConfig);
+    proxyReload(LIVE_RELOAD_PROXY, LiveReloadBrowserSyncConfig);
     done();
   });
   buildCmd.on('error', err => {
