@@ -68,9 +68,9 @@ function rebuildApp(done) {
 function startHMR(done) {
   const hmrCmd = exec('ng serve --hmr -e=hmr --delete-output-path false');
   hmrCmd.stdout.on('data', data => {
+    console.log(String(data));
     if (String(data) === 'webpack: Compiled successfully.\n') {
-      console.log('Marco!!!');
-      // POLO!!!!
+      proxyHmrReload();
       done();
     }
   });
