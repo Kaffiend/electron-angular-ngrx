@@ -18,6 +18,7 @@
     "start": "gulp hmr",
     "build": "gulp electron:launch",
     "hmr": "gulp hmr",
+    "docs": "gulp start:docs",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

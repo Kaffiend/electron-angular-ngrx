@@ -4,7 +4,9 @@ import * as gulp from 'gulp';
 import * as typescript from 'gulp-typescript';
 import * as browserSync from 'browser-sync';
 import * as nodemon from 'gulp-nodemon';
+import * as compodoc from '@compodoc/gulp-compodoc';
 import * as env from 'gulp-env';
+import { COMPILER_OPTIONS } from '@angular/core/src/linker/compiler';
 
 // Pipeline
 function buildElectron() {
@@ -70,7 +72,17 @@ function startHMR(done) {
       throw err;
     }
   });
-    return done();
+  return done();
+}
+
+function startCompodoc(done) {
+  return gulp.src('src/**/*.ts').pipe(
+    compodoc({
+      output: 'docs',
+      tsconfig: 'src/tsconfig.json',
+      serve: true
+    })
+  );
 }
 
 function proxyInit() {
@@ -146,6 +158,7 @@ gulp.task('serve:hmr', startHMR);
 
 gulp.task('serve:electron-hmr', serveElectronHmr);
 
+gulp.task('start:docs', startCompodoc);
 
 // Parallel.
 gulp.task('watch:electron', done => {
@@ -161,21 +174,12 @@ gulp.task('watch:app', done => {
 // Chains.
 gulp.task(
   'live-reload',
-  gulp.series(
-    'build:app',
-    'build:electron',
-    'live-reload:var',
-    gulp.parallel('watch:electron', 'serve:live-reload')
-  )
+  gulp.series('build:app', 'build:electron', 'live-reload:var', gulp.parallel('watch:electron', 'serve:live-reload'))
 );
 
 gulp.task(
   'hmr',
-  gulp.series(
-    'build:electron',
-    'hmr:var',
-    gulp.parallel('serve:hmr', 'watch:electron', 'serve:electron-hmr')
-  )
+  gulp.series('build:electron', 'hmr:var', gulp.parallel('serve:hmr', 'watch:electron', 'serve:electron-hmr'))
 );
 
 gulp.task('electron:launch', gulp.series('build:app', 'build:electron', 'launch:var', 'launch:electron'));
