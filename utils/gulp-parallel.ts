@@ -4,7 +4,7 @@ import { exec } from 'child_process';
 import * as compodoc from '@compodoc/gulp-compodoc';
 import * as browserSync from 'browser-sync';
 import * as nodemon from 'gulp-nodemon';
-import { proxyCli, proxyInit } from './gulp-series';
+import { proxyCli } from './gulp-series';
 import { TaskFunction } from 'undertaker';
 
 /**

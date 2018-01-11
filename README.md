@@ -70,42 +70,41 @@ The electron build artifacts will be stored in the `dist/electron` directory.
 
 ## Tasks
 ```
-├── build:electron - builds `src/electron` => `dist/electron`
-├── build:app - calls `ng build` on angular app => `dist/`
-├── launch:var - sets required environment variable for non-proxyed electron window url
-├── launch:electron - launches electron process on `dist/electron`
-├── rebuild:app - called by watcher to rebuild angular code.
-├── serve:live-reload - proxy electron window url with browserlink for live reload
-├── live-reload:var - sets required environment variable for proxyed electron window url.
-├── hmr:var - sets required environment variable for proxyed electron window with hmr.
-├── serve:hmr - calls `ng serve -hmr -e=hmr` to be proxyed by browserlink
-├── serve:electron-hmr proxy electron window with browserlink for hmr binding.
-├── start:docs - build and serve compodoc on localhost:8080gulp
-├── watch:electron - watcher task for changes on `src/electron`
-├── watch:app - watcher task on angular code
-├─┬ live-reload - task chain for launching live-reload workflow
-│ └─┬ <series> - this group of tasks run in series
-│   ├── build:app
-│   ├── build:electron
-│   ├── live-reload:var
-│   └─┬ <parallel> - this group of tasks run in parallel
-│     ├── watch:app
-│     ├── watch:electron
-│     └── serve:live-reload
-├─┬ hmr - task chain for launching HMR workflow
-│ └─┬ <series> - this group of tasks run in series
-│   ├── build:electron
-│   ├── hmr:var
-│   └─┬ <parallel> this group of tasks run in parallel
-│     ├── serve:hmr
-│     ├── watch:electron
-│     └── serve:electron-hmr
-└─┬ launch - task chain for launching single run with no proxy.
-  └─┬ <series> - this group of tasks run in series
-    ├── build:app
-    ├── build:electron
-    ├── launch:var
-    └── launch:electron
+ ├── build:electron      <Series>: Compiles Electron code to 'dist/electron'.
+ ├── build:app           <Series>: Builds the Angular code via CLI.
+ ├── launch:var          <Series>: Sets Environment Variable for relative proxy in Electron main window.
+ ├── launch:electron     <Paralell>: Launches Electron and pipes STDOUT from main process.
+ ├── rebuild:app         <Series>: Rebuilds the angular app output to 'dist' directory
+ ├── serve:live-reload   <Paralell>: Serves Electron via nodemon and proxy browser-sync.
+ ├── live-reload:var     <Series>: Sets Environment Variable for relative proxy in Electron main window.
+ ├── hmr:var             <Series>: Sets Environment Variable for relative proxy in Electron main window.
+ ├── serve:hmr           <Parallel>: Spins up the CLI HMR service
+ ├── serve:electron-hmr  <Paralell>: Serves Electron via nodemon and proxy CLI HMR service.
+ ├── start:docs          <Paralell>: Generates Compodoc documentation and serves it up.
+ ├── watch:electron
+ ├── watch:app
+ ├─┬ live-reload
+ │ └─┬ <series>
+ │   ├── build:app
+ │   ├── build:electron
+ │   ├── live-reload:var
+ │   └─┬ <parallel>
+ │     ├── watch:electron
+ │     ├── watch:app
+ │     └── serve:live-reload
+ ├─┬ hmr
+ │ └─┬ <series>
+ │   ├── build:electron
+ │   ├── hmr:var
+ │   └─┬ <parallel>
+ │     ├── serve:hmr
+ │     └── watch:electron
+ └─┬ default
+   └─┬ <series>
+     ├── build:app
+     ├── build:electron
+     ├── launch:var
+     └── launch:electron
 ```
 
 # ToDo
