@@ -1,4 +1,5 @@
 # Electron Angular NGRX
+[![Dependency Status](https://david-dm.org/kaffiend/electron-angular-ngrx.svg)](https://david-dm.org/kaffiend/electron-angular-ngrx.svg)
 
 # Table of Contents
 
