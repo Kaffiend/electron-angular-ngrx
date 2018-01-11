@@ -27,7 +27,7 @@ npm install -g gulp-cli
 # Mission
 The mission of this project is to provide a simple quick start seed that works with `@angular/cli` not against it or hacked around ejection of the underlying webpack. This is to hopefully keep this seed's build and development process easy to maintain and build on.
 
-This seed takes a low impact approach to some of the issues plagued by angular electron seeds. This seed currently uses gulp and various, tried and true packages such as `browserlink` to instead proxy the electron window, and the electron process is monitored with nodemon to restart its process on changes during live-reload development workflow.
+This seed takes a low impact approach to some of the issues plagued by angular electron seeds. This seed currently uses gulp and various, tried and true packages such as `browserlink` to instead proxy the electron window, and the electron process is monitored with nodemon to restart its process on changes during live-reload, and HMR development workflow.
 
 # Project Structure
 ```
@@ -109,7 +109,7 @@ The electron build artifacts will be stored in the `dist/electron` directory.
 
 # ToDo
 - [x] Integrate HMR (Hot Module Relplacement) workflow.
-- [ ] Clean up tasks in a uniform manner and self-documenting.
+- [x] Clean up tasks in a uniform manner and self-documenting.
 - [ ] Integrate simple NGRX with HMR.
 - [ ] Electron packaging.
 - [ ] Integrate developement extensions redux, devtron.
