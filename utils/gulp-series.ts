@@ -26,7 +26,7 @@ export const buildAppTask = <TaskFunction>function buildApp() {
 };
 // Gulp-CLI documentation and task registration.
 buildAppTask.displayName = `build:app`;
-buildAppTask.description = `Builds the Angular code via cli.`;
+buildAppTask.description = `<Series>: Builds the Angular code via CLI.`;
 
 /**
  * This task is only used for the Live-Reload Proxy.
@@ -47,49 +47,54 @@ export const rebuildAppTask = <TaskFunction>function rebuildApp(done) {
 };
 // Gulp-CLI documentation and task registration.
 rebuildAppTask.displayName = `rebuild:app`;
-rebuildAppTask.description = `rebuilds the angular app output to 'dist' directory`;
+rebuildAppTask.description = `<Series>: Rebuilds the angular app output to 'dist' directory`;
 
-export function buildElectron() {
+export const buildElectronTask = <TaskFunction>function buildElectron() {
   return gulp
     .src([Paths.electron_src])
     .pipe(typescript())
     .pipe(gulp.dest(Paths.electron_dest));
-}
+};
+buildElectronTask.displayName = 'build:electron';
+buildElectronTask.description = `<Series>: Compiles Electron code to 'dist/electron'.`;
 
-export function setLaunchVariable(done) {
+export const setLaunchVariableTask = <TaskFunction>function setLaunchVariable(done) {
   env.set({
     LAUNCH_MODE: 'build',
     NODE_ENV: 'development'
   });
   done();
-}
+};
+setLaunchVariableTask.displayName = 'launch:var';
+setLaunchVariableTask.description = '<Series>: Sets Environment Variable for relative proxy in Electron main window.';
 
-export function setLiveReloadVariable(done) {
+export const setLiveReloadVariableTask = <TaskFunction>function setLiveReloadVariable(done) {
   env.set({
     LAUNCH_MODE: 'LiveReload',
     NODE_ENV: 'development'
   });
   done();
-}
+};
+setLiveReloadVariableTask.displayName = 'live-reload:var';
+setLiveReloadVariableTask.description = '<Series>: Sets Environment Variable for relative proxy in Electron main window.';
 
-export function setHmrVariable(done) {
+export const setHmrVariableTask = <TaskFunction>function setHmrVariable(done) {
   env.set({
     LAUNCH_MODE: 'HMR',
     NODE_ENV: 'development'
   });
   done();
-}
-
-export function proxyInit(proxy: string, config: Object) {
-  return browserSync.create(proxy).init(config);
-}
+};
+setHmrVariableTask.displayName = 'hmr:var';
+setHmrVariableTask.description = '<Series>: Sets Environment Variable for relative proxy in Electron main window.';
 
 /**
+ * Helper Method.
  * This method gets the proxy browser-sync instance and
  * calls the reload method.
- * If the instance doesnt exhist, it creates a new one.
- * @param proxy - the proxy type, HMR or Live Reload.
- * @param config - relative proxy config object from config.
+ * If the instance doesnt exist, it creates a new one.
+ * @param proxy - proxy type, HMR or Live-Reload.
+ * @param config - relative proxy config object.
  */
 export function proxyCli(proxy: string, config: object) {
   try {
@@ -100,6 +105,6 @@ export function proxyCli(proxy: string, config: object) {
     }
   } catch (err) {
     console.log('Proxy Inactive: Instantiating new instance.');
-    proxyInit(proxy, config);
+    return browserSync.create(proxy).init(config);
   }
 }

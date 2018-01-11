@@ -18,50 +18,49 @@ import * as env from 'gulp-env';
 import {
   buildAppTask,
   rebuildAppTask,
-  buildElectron,
-  setHmrVariable,
-  setLaunchVariable,
-  setLiveReloadVariable,
-  proxyInit,
+  buildElectronTask,
+  setHmrVariableTask,
+  setLaunchVariableTask,
+  setLiveReloadVariableTask,
   proxyCli
 } from './utils/gulp-series';
 
 import {
-  launchElectron,
-  startCompodoc,
-  startHMR,
-  serveLiveReload,
-  serveElectronHmr
+  launchElectronTask,
+  startCompodocTask,
+  startHMRTask,
+  serveLiveReloadTask,
+  serveElectronHmrTask
 } from './utils/gulp-parallel';
 
  /**
   * Gulp individual task wrappers.
   */
-gulp.task('build:electron', buildElectron);
+gulp.task(buildElectronTask);
 
 gulp.task(buildAppTask);
 
-gulp.task('launch:var', setLaunchVariable);
+gulp.task(setLaunchVariableTask);
 
-gulp.task('launch:electron', launchElectron);
+gulp.task(launchElectronTask);
 
 gulp.task(rebuildAppTask);
 
-gulp.task('serve:live-reload', serveLiveReload);
+gulp.task(serveLiveReloadTask);
 
-gulp.task('live-reload:var', setLiveReloadVariable);
+gulp.task(setLiveReloadVariableTask);
 
-gulp.task('hmr:var', setHmrVariable);
+gulp.task(setHmrVariableTask);
 
-gulp.task('serve:hmr', startHMR);
+gulp.task(startHMRTask);
 
-gulp.task('serve:electron-hmr', serveElectronHmr);
+gulp.task(serveElectronHmrTask);
 
-gulp.task('start:docs', startCompodoc);
+gulp.task(startCompodocTask);
 
-// Parallel.
+// Parallel Watchers.
 gulp.task('watch:electron', (done) => {
-  gulp.watch(Paths.electron_src, buildElectron);
+  gulp.watch(Paths.electron_src, buildElectronTask);
   done();
 });
 
