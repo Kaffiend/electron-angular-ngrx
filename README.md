@@ -9,9 +9,7 @@ The mission of this project is to provide a simple quick start seed that works w
 This seed takes a low impact approach to some of the issues plagued by angular electron seeds. This seed currently uses gulp and various, tried and true packages such as `browserlink` to instead proxy the electron window, and the electron process is monitored with nodemon to restart its process on changes during live-reload, and HMR development workflow.
 
 # Table of Contents
-
 - [Getting Started](#getting-started)
-- [Mission](#mission)
 - [Project Structure](#project-structure)
 - [Build Process](#build-process)
     - [Build - HMR (development)](#build---hmr-development)
@@ -27,7 +25,6 @@ This seed takes a low impact approach to some of the issues plagued by angular e
 # Getting Started
   - This project requires Electron, Gulp, and Angular CLI.
   - See [angular/cli](#angularcli) for CLI version. 
-  - Typings are installed automatically.
 ```bash
 npm install -g @angular/cli
 npm install -g electron
@@ -121,7 +118,7 @@ The electron build artifacts will be stored in the `dist/electron` directory.
 - [ ] Electron packaging.
 - [ ] Integrate developement extensions redux, devtron.
 - [x] Add Compodoc.
-- [ ] Add contribution guidelines.
+- [x] Add contribution guidelines.
 - [ ] Add Conventional Changelog.
 - [ ] Wiki for adding [@angular/material](https://github.com/angular/material).
 - [ ] Wiki for adding [Bootstrap](https://github.com/twbs/bootstrap).
