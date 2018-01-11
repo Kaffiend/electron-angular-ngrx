@@ -9,6 +9,9 @@ The mission of this project is to provide a simple quick start seed that works w
 This seed takes a low impact approach to some of the issues plagued by angular electron seeds. This seed currently uses gulp and various, tried and true packages such as `browserlink` to instead proxy the electron window, and the electron process is monitored with nodemon to restart its process on changes during live-reload, and HMR development workflow.
 
 # Table of Contents
+- [Electron Angular NGRX](#electron-angular-ngrx)
+- [Mission](#mission)
+- [Table of Contents](#table-of-contents)
 - [Getting Started](#getting-started)
 - [Project Structure](#project-structure)
 - [Build Process](#build-process)
@@ -16,6 +19,7 @@ This seed takes a low impact approach to some of the issues plagued by angular e
     - [Build - Live Reload (development)](#build---live-reload-development)
     - [Build - One-Shot Launch (development)](#build---one-shot-launch-development)
     - [Tasks](#tasks)
+- [Contributing](#contributing)
 - [ToDo](#todo)
 - [angular/cli](#angularcli)
     - [Running unit tests](#running-unit-tests)
@@ -110,6 +114,8 @@ The electron build artifacts will be stored in the `dist/electron` directory.
      ├── launch:var
      └── launch:electron
 ```
+# Contributing
+Pleaes review the [CONTRIBUTING](https://github.com/Kaffiend/electron-angular-ngrx/blob/master/CONTRIBUTING.md) guidlines.
 
 # ToDo
 - [x] Integrate HMR (Hot Module Relplacement) workflow.
