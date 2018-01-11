@@ -1,5 +1,6 @@
 # Electron Angular NGRX
 [![Dependency Status](https://david-dm.org/kaffiend/electron-angular-ngrx.svg)](https://david-dm.org/kaffiend/electron-angular-ngrx.svg)
+[![GitHub version](https://badge.fury.io/gh/Kaffiend%2Felectron-angular-ngrx.svg)](https://badge.fury.io/gh/Kaffiend%2Felectron-angular-ngrx)
 
 # Table of Contents
 
