@@ -11,12 +11,13 @@ import { TaskFunction } from 'undertaker';
  * Calls electron on the main process in the 'dist/electron' directory
  * Pipes STDOUT from Electron's Main process to the console.
  */
-export const launchElectronTask = <TaskFunction>function launchElectron(done) {
+export const launchElectronTask = <TaskFunction>function launchElectron() {
   const electronCmd = exec(`electron ${Paths.electron_dest}main`);
   electronCmd.stdout.pipe(process.stdout);
-  done();
+  return electronCmd;
 };
-launchElectronTask.displayName = 'launch:electron;';
+// Gulp-CLI documentation and task registration.
+launchElectronTask.displayName = 'launch:electron';
 launchElectronTask.description = '<Paralell>: Launches Electron and pipes STDOUT from main process.';
 
 /**
@@ -33,7 +34,7 @@ export const startHMRTask = <TaskFunction>function startHMR(done) {
       if (firstRun) {
         firstRun = false;
         done();
-        return serveElectronHmr();
+        return serveElectronHmrTask(done);
       }
     }
   });
@@ -41,6 +42,7 @@ export const startHMRTask = <TaskFunction>function startHMR(done) {
     throw err;
   });
 };
+// Gulp-CLI documentation and task registration.
 startHMRTask.displayName = 'serve:hmr';
 startHMRTask.description = '<Parallel>: Spins up the CLI HMR service';
 
@@ -60,23 +62,30 @@ export const startCompodocTask = <TaskFunction>function startCompodoc(done) {
     })
   );
 };
+// Gulp-CLI documentation and task registration.
 startCompodocTask.displayName = 'start:docs';
-startCompodocTask.description = 'Generates Compodoc documentation and serves it up.';
+startCompodocTask.description = '<Paralell>: Generates Compodoc documentation and serves it up.';
 
-export function serveLiveReload() {
+export const serveLiveReloadTask = <TaskFunction>function serveLiveReload() {
   nodemon({
     exec: `electron ${Paths.electron_dest}main`,
     watch: [Paths.electron_dest]
   }).on('start', () => {
     proxyCli(LIVE_RELOAD_PROXY, LiveReloadBrowserSyncConfig);
   });
-}
+};
+// Gulp-CLI documentation and task registration.
+serveLiveReloadTask.displayName = 'serve:live-reload';
+serveLiveReloadTask.description = '<Paralell>: Serves Electron via nodemon and proxy browser-sync.';
 
-export function serveElectronHmr() {
+export const serveElectronHmrTask = <TaskFunction>function serveElectronHmr() {
   return nodemon({
     exec: `electron ${Paths.electron_dest}main`,
     watch: [Paths.electron_dest]
   }).on('start', () => {
     proxyCli(HMR_PROXY, HmrBrowserSyncConfig);
   });
-}
+};
+// Gulp-CLI documentation and task registration.
+serveElectronHmrTask.displayName = 'serve:electron-hmr';
+serveElectronHmrTask.description = '<Paralell>: Serves Electron via nodemon and proxy CLI HMR service.';

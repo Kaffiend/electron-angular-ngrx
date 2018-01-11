@@ -30,8 +30,8 @@ import {
   launchElectronTask,
   startCompodocTask,
   startHMRTask,
-  serveLiveReload,
-  serveElectronHmr
+  serveLiveReloadTask,
+  serveElectronHmrTask
 } from './utils/gulp-parallel';
 
  /**
@@ -47,7 +47,7 @@ gulp.task(launchElectronTask);
 
 gulp.task(rebuildAppTask);
 
-gulp.task('serve:live-reload', serveLiveReload);
+gulp.task(serveLiveReloadTask);
 
 gulp.task('live-reload:var', setLiveReloadVariable);
 
@@ -55,7 +55,7 @@ gulp.task('hmr:var', setHmrVariable);
 
 gulp.task(startHMRTask);
 
-gulp.task('serve:electron-hmr', serveElectronHmr);
+gulp.task(serveElectronHmrTask);
 
 gulp.task(startCompodocTask);
 
