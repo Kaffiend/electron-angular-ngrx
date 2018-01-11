@@ -1,6 +1,6 @@
 # Electron Angular NGRX
-[![Dependency Status](https://david-dm.org/kaffiend/electron-angular-ngrx.svg)](https://david-dm.org/kaffiend/electron-angular-ngrx.svg)
-[![devDependency Status](https://david-dm.org/kaffiend/electron-angular-ngrx/dev-status.svg)](https://david-dm.org/kaffiend/electron-angular-ngrx.svg#info=devDependencies)
+[![Dependency Status](https://david-dm.org/kaffiend/electron-angular-ngrx.svg)](https://david-dm.org/kaffiend/electron-angular-ngrx)
+[![devDependency Status](https://david-dm.org/kaffiend/electron-angular-ngrx/dev-status.svg)](https://david-dm.org/kaffiend/electron-angular-ngrx#info=devDependencies)
 [![GitHub license](https://img.shields.io/github/license/Kaffiend/electron-angular-ngrx.svg)](https://github.com/Kaffiend/electron-angular-ngrx/blob/master/LICENSE)
 
 # Mission
