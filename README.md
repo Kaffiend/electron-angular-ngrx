@@ -123,8 +123,8 @@ The electron build artifacts will be stored in the `dist/electron` directory.
 - [x] Add Compodoc.
 - [ ] Add contribution guidelines.
 - [ ] Add Conventional Changelog.
-- [ ] Wiki for adding @angular/material.
-- [ ] Wiki for adding Bootstrap.
+- [ ] Wiki for adding [@angular/material](https://github.com/angular/material).
+- [ ] Wiki for adding [Bootstrap](https://github.com/twbs/bootstrap).
 - [ ] Wiki for local [FontAwesome](https://github.com/FortAwesome/Font-Awesome) for packaging.
 
 # angular/cli 
