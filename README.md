@@ -57,7 +57,7 @@ This seed takes a low impact approach to some of the issues plagued by angular e
 
 
 ## Build - HMR (development)
-Run `npm start` (default script) or `gulp hmr` to build,  and launch and non-proxyed build with HMR. 
+Run `npm start` (default script) or `gulp hmr` to build,  and launch the HMR Workflow. 
 
 ## Build - Live Reload (development)
 
@@ -65,10 +65,10 @@ Run `npm run live-reload` or `gulp live-reload` to build, launch and proxy live 
 The angular build artifacts will be stored in the `dist/` directory.
 The electron build artifacts will be stored in the `dist/electron` directory.
 The Electron main process will be restarted automatically if the electron code changes.
-The Render Process will utlize live reloads to reload changes on save on angular code.
+The Render Process will utilize live reloads to reload changes on save for angular code.
 
 ## Build - One-Shot Launch (development)
-Run `npm run launch` or `gulp electron:launch` to build,  and launch and non-proxyed build. 
+Run `npm run launch` or `gulp electron:launch` to build,  and launch non-proxyed static build. 
 The angular build artifacts will be stored in the `dist/` directory.
 The electron build artifacts will be stored in the `dist/electron` directory.
 
