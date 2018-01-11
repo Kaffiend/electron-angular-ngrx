@@ -4,7 +4,7 @@ import { exec } from 'child_process';
 import * as compodoc from '@compodoc/gulp-compodoc';
 import * as browserSync from 'browser-sync';
 import * as nodemon from 'gulp-nodemon';
-import { proxyReload, proxyInit } from './gulp-series';
+import { proxyCli, proxyInit } from './gulp-series';
 
 /**
  * Calls electron on the main process in the 'dist/electron' directory
@@ -20,12 +20,16 @@ export function launchElectron(done) {
  * @param done - Callback function to signal task completion.
  */
 export function startHMR(done) {
-  const hmrCmd = exec('ng serve --hmr -e=hmr --delete-output-path false');
+  let firstRun = true;
+  const hmrCmd = exec('ng serve --hmr -e=hmr -dop=false');
+  hmrCmd.stdout.pipe(process.stdout);
   hmrCmd.stdout.on('data', data => {
-    console.log(String(data));
     if (String(data) === 'webpack: Compiled successfully.\n') {
-      done();
-      return serveElectronHmr();
+      if (firstRun) {
+        firstRun = false;
+        done();
+        return serveElectronHmr();
+      }
     }
   });
   hmrCmd.on('error', err => {
@@ -54,7 +58,7 @@ export function serveLiveReload() {
     exec: `electron ${Paths.electron_dest}main`,
     watch: [Paths.electron_dest]
   }).on('start', () => {
-    proxyReload(LIVE_RELOAD_PROXY, LiveReloadBrowserSyncConfig);
+    proxyCli(LIVE_RELOAD_PROXY, LiveReloadBrowserSyncConfig);
   });
 }
 
@@ -63,13 +67,6 @@ export function serveElectronHmr() {
     exec: `electron ${Paths.electron_dest}main`,
     watch: [Paths.electron_dest]
   }).on('start', () => {
-    try {
-      const active = browserSync.get(HMR_PROXY);
-      if (active) {
-        active.reload();
-      }
-    } catch (err) {
-      proxyInit(HMR_PROXY, HmrBrowserSyncConfig);
-    }
+    proxyCli(HMR_PROXY, HmrBrowserSyncConfig);
   });
 }

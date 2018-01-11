@@ -37,7 +37,7 @@ export const rebuildAppTask = <TaskFunction>function rebuildApp(done) {
   // pipe cli output to STDOUT so we can see it working.
   buildCmd.stdout.pipe(process.stdout);
   buildCmd.stdout.on('data', data => {
-    proxyReload(LIVE_RELOAD_PROXY, LiveReloadBrowserSyncConfig);
+    proxyCli(LIVE_RELOAD_PROXY, LiveReloadBrowserSyncConfig);
     done();
   });
   buildCmd.on('error', err => {
@@ -91,14 +91,15 @@ export function proxyInit(proxy: string, config: Object) {
  * @param proxy - the proxy type, HMR or Live Reload.
  * @param config - relative proxy config object from config.
  */
-export function proxyReload(proxy: string, config: object) {
+export function proxyCli(proxy: string, config: object) {
   try {
     const active = browserSync.get(proxy);
     if (active) {
+      console.log('Proxy Active: Reloading.');
       active.reload();
     }
   } catch (err) {
-    console.log('No proxy instance found: initializing new instance.');
+    console.log('Proxy Inactive: Instantiating new instance.');
     proxyInit(proxy, config);
   }
 }

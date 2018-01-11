@@ -23,7 +23,7 @@ import {
   setLaunchVariable,
   setLiveReloadVariable,
   proxyInit,
-  proxyReload
+  proxyCli
 } from './utils/gulp-series';
 
 import {
