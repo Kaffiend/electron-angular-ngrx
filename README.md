@@ -17,12 +17,15 @@
     - [Further help](#further-help)
 
 # Getting Started
-This project requires Electron and Gulp-CLI.
+This project requires Electron, Gulp, and Angular CLI
+See [angular/cli](#angularcli) for CLI version.
 Typings are installed automatically.
 ```bash
 npm install -g electron
-npm install -g gulp-cli
+npm install -g gulp@next
+npm install
 ```
+`npm start` is the default task that launchs the HMR development workflow.
 
 # Mission
 The mission of this project is to provide a simple quick start seed that works with `@angular/cli` not against it or hacked around ejection of the underlying webpack. This is to hopefully keep this seed's build and development process easy to maintain and build on.
