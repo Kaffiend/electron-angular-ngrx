@@ -4,6 +4,7 @@
   "license": "MIT",
   "keywords": [
     "angular",
+    "angular 5",
     "@angular/cli",
     "electron",
     "ngrx",
@@ -12,7 +13,7 @@
     "seed"
   ],
   "author": "Ian Mackie",
-  "description": "Angular 5x, Electron, HMR, Live Reload, Gulp4 driven workflow",
+  "description": "An Angular 5x, NGRX, Electron, HMR, Live Reload, Gulp4 driven workflow",
   "scripts": {
     "ng": "ng",
     "live-reload": "gulp live-reload",

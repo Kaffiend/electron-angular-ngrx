@@ -1,6 +1,6 @@
 # Electron Angular NGRX
 [![Dependency Status](https://david-dm.org/kaffiend/electron-angular-ngrx.svg)](https://david-dm.org/kaffiend/electron-angular-ngrx.svg)
-[![GitHub version](https://badge.fury.io/gh/Kaffiend%2Felectron-angular-ngrx.svg)](https://badge.fury.io/gh/Kaffiend%2Felectron-angular-ngrx)
+[![devDependency Status](https://david-dm.org/kaffiend/electron-angular-ngrx/dev-status.svg)](https://david-dm.org/kaffiend/electron-angular-ngrx.svg#info=devDependencies)
 [![GitHub license](https://img.shields.io/github/license/Kaffiend/electron-angular-ngrx.svg)](https://github.com/Kaffiend/electron-angular-ngrx/blob/master/LICENSE)
 
 # Mission
@@ -122,6 +122,7 @@ The electron build artifacts will be stored in the `dist/electron` directory.
 - [ ] Integrate developement extensions redux, devtron.
 - [x] Add Compodoc.
 - [ ] Add contribution guidelines.
+- [ ] Add Conventional Changelog.
 
 # angular/cli 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
