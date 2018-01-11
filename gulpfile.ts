@@ -18,11 +18,10 @@ import * as env from 'gulp-env';
 import {
   buildAppTask,
   rebuildAppTask,
-  buildElectron,
-  setHmrVariable,
-  setLaunchVariable,
-  setLiveReloadVariable,
-  proxyInit,
+  buildElectronTask,
+  setHmrVariableTask,
+  setLaunchVariableTask,
+  setLiveReloadVariableTask,
   proxyCli
 } from './utils/gulp-series';
 
@@ -37,11 +36,11 @@ import {
  /**
   * Gulp individual task wrappers.
   */
-gulp.task('build:electron', buildElectron);
+gulp.task(buildElectronTask);
 
 gulp.task(buildAppTask);
 
-gulp.task('launch:var', setLaunchVariable);
+gulp.task(setLaunchVariableTask);
 
 gulp.task(launchElectronTask);
 
@@ -49,9 +48,9 @@ gulp.task(rebuildAppTask);
 
 gulp.task(serveLiveReloadTask);
 
-gulp.task('live-reload:var', setLiveReloadVariable);
+gulp.task(setLiveReloadVariableTask);
 
-gulp.task('hmr:var', setHmrVariable);
+gulp.task(setHmrVariableTask);
 
 gulp.task(startHMRTask);
 
@@ -59,9 +58,9 @@ gulp.task(serveElectronHmrTask);
 
 gulp.task(startCompodocTask);
 
-// Parallel.
+// Parallel Watchers.
 gulp.task('watch:electron', (done) => {
-  gulp.watch(Paths.electron_src, buildElectron);
+  gulp.watch(Paths.electron_src, buildElectronTask);
   done();
 });
 
