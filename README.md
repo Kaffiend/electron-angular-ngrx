@@ -3,6 +3,11 @@
 [![GitHub version](https://badge.fury.io/gh/Kaffiend%2Felectron-angular-ngrx.svg)](https://badge.fury.io/gh/Kaffiend%2Felectron-angular-ngrx)
 [![GitHub license](https://img.shields.io/github/license/Kaffiend/electron-angular-ngrx.svg)](https://github.com/Kaffiend/electron-angular-ngrx/blob/master/LICENSE)
 
+# Mission
+The mission of this project is to provide a simple quick start seed that works with `@angular/cli` not against it or hacked around ejection of the underlying webpack. This is to hopefully keep this seed's build and development process easy to maintain and build on.
+
+This seed takes a low impact approach to some of the issues plagued by angular electron seeds. This seed currently uses gulp and various, tried and true packages such as `browserlink` to instead proxy the electron window, and the electron process is monitored with nodemon to restart its process on changes during live-reload, and HMR development workflow.
+
 # Table of Contents
 
 - [Getting Started](#getting-started)
@@ -30,11 +35,6 @@ npm install -g gulp@next
 npm install
 ```
 `npm start` is the default task that launchs the HMR development workflow.
-
-# Mission
-The mission of this project is to provide a simple quick start seed that works with `@angular/cli` not against it or hacked around ejection of the underlying webpack. This is to hopefully keep this seed's build and development process easy to maintain and build on.
-
-This seed takes a low impact approach to some of the issues plagued by angular electron seeds. This seed currently uses gulp and various, tried and true packages such as `browserlink` to instead proxy the electron window, and the electron process is monitored with nodemon to restart its process on changes during live-reload, and HMR development workflow.
 
 # Project Structure
 ```
