@@ -11,6 +11,8 @@
     "hmr",
     "seed"
   ],
+  "author": "Ian Mackie",
+  "description": "Angular 5x, Electron, HMR, Live Reload, Gulp4 driven workflow",
   "scripts": {
     "ng": "ng",
     "live-reload": "gulp live-reload",
@@ -23,7 +25,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^5.0.0",
     "@angular/common": "^5.0.0",
