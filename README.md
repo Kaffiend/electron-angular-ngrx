@@ -18,9 +18,10 @@
 
 # Getting Started
   - This project requires Electron, Gulp, and Angular CLI.
-  - See [angular/cli](#angularcli) for CLI version.
+  - See [angular/cli](#angularcli) for CLI version. 
   - Typings are installed automatically.
 ```bash
+npm install -g @angular/cli
 npm install -g electron
 npm install -g gulp@next
 npm install
