@@ -27,9 +27,9 @@ import {
 } from './utils/gulp-series';
 
 import {
-  launchElectron,
-  startCompodoc,
-  startHMR,
+  launchElectronTask,
+  startCompodocTask,
+  startHMRTask,
   serveLiveReload,
   serveElectronHmr
 } from './utils/gulp-parallel';
@@ -43,7 +43,7 @@ gulp.task(buildAppTask);
 
 gulp.task('launch:var', setLaunchVariable);
 
-gulp.task('launch:electron', launchElectron);
+gulp.task(launchElectronTask);
 
 gulp.task(rebuildAppTask);
 
@@ -53,11 +53,11 @@ gulp.task('live-reload:var', setLiveReloadVariable);
 
 gulp.task('hmr:var', setHmrVariable);
 
-gulp.task('serve:hmr', startHMR);
+gulp.task(startHMRTask);
 
 gulp.task('serve:electron-hmr', serveElectronHmr);
 
-gulp.task('start:docs', startCompodoc);
+gulp.task(startCompodocTask);
 
 // Parallel.
 gulp.task('watch:electron', (done) => {

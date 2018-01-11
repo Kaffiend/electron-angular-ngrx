@@ -5,21 +5,26 @@ import * as compodoc from '@compodoc/gulp-compodoc';
 import * as browserSync from 'browser-sync';
 import * as nodemon from 'gulp-nodemon';
 import { proxyCli, proxyInit } from './gulp-series';
+import { TaskFunction } from 'undertaker';
 
 /**
  * Calls electron on the main process in the 'dist/electron' directory
+ * Pipes STDOUT from Electron's Main process to the console.
  */
-export function launchElectron(done) {
+export const launchElectronTask = <TaskFunction>function launchElectron(done) {
   const electronCmd = exec(`electron ${Paths.electron_dest}main`);
   electronCmd.stdout.pipe(process.stdout);
   done();
-}
+};
+launchElectronTask.displayName = 'launch:electron;';
+launchElectronTask.description = '<Paralell>: Launches Electron and pipes STDOUT from main process.';
 
 /**
  * This task is only used the HMR Proxy.
+ * Spins up the CLI HMR service and pipes its STDOUT to the console.
  * @param done - Callback function to signal task completion.
  */
-export function startHMR(done) {
+export const startHMRTask = <TaskFunction>function startHMR(done) {
   let firstRun = true;
   const hmrCmd = exec('ng serve --hmr -e=hmr -dop=false');
   hmrCmd.stdout.pipe(process.stdout);
@@ -35,23 +40,28 @@ export function startHMR(done) {
   hmrCmd.on('error', err => {
     throw err;
   });
-}
+};
+startHMRTask.displayName = 'serve:hmr';
+startHMRTask.description = '<Parallel>: Spins up the CLI HMR service';
 
 /**
  * This task generates the angular Compodoc documentation to the 'docs'
  * directory and serves it on default port of 8080.
  * @param done - Callback fruntion to signal task completion.
  */
-export function startCompodoc(done) {
+export const startCompodocTask = <TaskFunction>function startCompodoc(done) {
   return gulp.src('src/**/*.ts').pipe(
     compodoc({
       port: 8080,
       output: 'docs',
       tsconfig: 'src/tsconfig.json',
-      serve: true
+      serve: true,
+      open: true
     })
   );
-}
+};
+startCompodocTask.displayName = 'start:docs';
+startCompodocTask.description = 'Generates Compodoc documentation and serves it up.';
 
 export function serveLiveReload() {
   nodemon({
