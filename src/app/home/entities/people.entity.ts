@@ -14,7 +14,7 @@ export function sortByName(a: Person, b: Person): number {
   return a.name.localeCompare(b.name);
 }
 
-export const adapter: EntityAdapter<Person> = createEntityAdapter<Person>({
+export const peopleAdapter: EntityAdapter<Person> = createEntityAdapter<Person>({
   sortComparer: sortByName
 });
 
