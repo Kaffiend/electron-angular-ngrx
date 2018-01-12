@@ -14,6 +14,7 @@ import { TaskFunction } from 'undertaker';
 export const launchElectronTask = <TaskFunction>function launchElectron() {
   const electronCmd = exec(`electron ${Paths.electron_dest}main`);
   electronCmd.stdout.pipe(process.stdout);
+  electronCmd.stderr.pipe(process.stderr);
   return electronCmd;
 };
 // Gulp-CLI documentation and task registration.
