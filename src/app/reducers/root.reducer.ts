@@ -8,7 +8,6 @@ import {
 import { environment } from '../../environments/environment';
 import { RouterStateUrl } from '../shared/utils';
 import * as fromRouter from '@ngrx/router-store';
-import * as fromHome from '../home/home.reducer';
 /**
  * storeFreeze prevents state from being mutated. When mutation occurs, an
  * exception will be thrown. This is useful during development mode to
@@ -23,7 +22,7 @@ import { storeFreeze } from 'ngrx-store-freeze';
  * notation packages up all of the exports into a single object.
  */
 
-// import * as fromLayout from '../core/reducers/layout';
+import * as fromHome from '../home';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
