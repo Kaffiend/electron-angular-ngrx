@@ -1,5 +1,5 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
-
+import './dev-extensions';
 import * as path from 'path';
 
 let applicationRef: Electron.BrowserWindow = null;

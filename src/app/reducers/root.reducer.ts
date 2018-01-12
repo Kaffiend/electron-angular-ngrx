@@ -22,7 +22,7 @@ import { storeFreeze } from 'ngrx-store-freeze';
  * notation packages up all of the exports into a single object.
  */
 
-import * as fromHome from '../home';
+import * as fromHome from '../home/reducers/home.reducer';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means

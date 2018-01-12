@@ -13,16 +13,14 @@ import { HomeModule } from 'app/home/home.module';
 import { StoreRouterConnectingModule } from '@ngrx/router-store/src/router_store_module';
 import { RouterStateSerializer } from '@ngrx/router-store/src/serializer';
 import { CustomRouterStateSerializer } from 'app/shared/utils';
-import { reducers } from 'app/reducers/root.reducer';
+import { reducers, metaReducers } from 'app/reducers/root.reducer';
 
 @NgModule({
   declarations: [],
   imports: [
     BrowserModule,
     CommonModule,
-    StoreModule.forRoot([
-      reducers
-    ]),
+    StoreModule.forRoot(reducers, {metaReducers}),
     RouterModule.forRoot([{path: './', component: HomePageComponent}]),
     StoreRouterConnectingModule,
     !environment.production ? StoreDevtoolsModule.instrument() : [],

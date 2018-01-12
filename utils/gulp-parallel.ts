@@ -29,6 +29,7 @@ export const startHMRTask = <TaskFunction>function startHMR(done) {
   let firstRun = true;
   const hmrCmd = exec('ng serve --hmr -e=hmr -dop=false');
   hmrCmd.stdout.pipe(process.stdout);
+  hmrCmd.stderr.pipe(process.stderr);
   hmrCmd.stdout.on('data', data => {
     if (String(data) === 'webpack: Compiled successfully.\n') {
       if (firstRun) {
