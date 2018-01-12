@@ -21,11 +21,11 @@ import { reducers, metaReducers } from 'app/reducers/root.reducer';
     BrowserModule,
     CommonModule,
     StoreModule.forRoot(reducers, {metaReducers}),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
-    RouterModule.forRoot([{path: './', component: HomePageComponent}]),
     StoreRouterConnectingModule,
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
     CoreModule.forRoot(),
     HomeModule,
+    RouterModule.forRoot([{path: './', component: HomePageComponent}]),
   ],
   providers: [
     {provide: RouterStateSerializer, useClass: CustomRouterStateSerializer}

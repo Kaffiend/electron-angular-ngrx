@@ -1,6 +1,10 @@
 @import '~styles/mixins';
 @import '~styles/variables';
 
+:host {
+  margin-bottom: 50px;
+}
+
 .fixed-nav-bar {
   color: white;
   position: fixed;

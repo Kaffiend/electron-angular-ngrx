@@ -27,4 +27,5 @@ export function reducer(state = initialState, action: HomeActions): State {
   }
 }
 
+
 export const getSelectedUserId = (state: State) => state.selectedUserId;

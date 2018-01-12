@@ -15,6 +15,10 @@ export class AppComponent {
       label: 'Home',
       routerLink: '/'
     },
+    {
+      label: 'People',
+      routerLink: '/people'
+    },
   ];
 
 }
