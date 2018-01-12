@@ -15,10 +15,6 @@ export class AppComponent {
       label: 'Home',
       routerLink: '/'
     },
-    {
-      label: 'Stuff',
-      routerLink: ''
-    }
   ];
 
 }

@@ -20,14 +20,14 @@ import { reducers } from 'app/reducers/root.reducer';
   imports: [
     BrowserModule,
     CommonModule,
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
-    CoreModule.forRoot(),
-    HomeModule,
     StoreModule.forRoot([
       reducers
     ]),
     RouterModule.forRoot([{path: './', component: HomePageComponent}]),
-    StoreRouterConnectingModule
+    StoreRouterConnectingModule,
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    CoreModule.forRoot(),
+    HomeModule,
   ],
   providers: [
     {provide: RouterStateSerializer, useClass: CustomRouterStateSerializer}
