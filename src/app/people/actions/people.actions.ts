@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Person } from 'app/people/entities/people.entity';
+import { Person } from '../models/people';
 
 export enum PeopleActionTypes {
   LoadPeople = '[People] Load People',
@@ -30,8 +30,19 @@ export class AddPerson implements Action {
   constructor(public payload: {person: Person}) {}
 }
 
+export class DeletePerson implements Action {
+  readonly type = PeopleActionTypes.DeletePerson;
+  constructor(public payload: {id: string}) {}
+}
+
+export class ClearPeople implements Action {
+  readonly type = PeopleActionTypes.ClearPeople;
+}
+
 export type PeopleActions =
  LoadPeople
  | LoadPeopleSuccess
  | LoadPeopleFailure
- | AddPerson;
+ | AddPerson
+ | DeletePerson
+ | ClearPeople;

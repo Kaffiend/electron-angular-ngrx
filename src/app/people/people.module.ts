@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PeoplePageComponent } from 'app/people/containers/people-page.component';
+import { PeoplePageComponent } from 'app/people/containers/people-page';
 import { RouterModule } from '@angular/router';
 
 export const COMPONENTS = [
