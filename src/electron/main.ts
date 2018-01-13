@@ -1,6 +1,9 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import './dev-extensions';
 import * as path from 'path';
+import rxIpc from 'rx-ipc-electron/lib/main';
+import { SEEDS } from './data';
+import { Observable } from 'rxjs/Observable';
 
 let applicationRef: Electron.BrowserWindow = null;
 
@@ -47,3 +50,9 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+function sendSeeds() {
+  return Observable.of(SEEDS);
+}
+
+rxIpc.registerListener('send-seeds', sendSeeds);
