@@ -11,14 +11,13 @@ export enum PeopleActionTypes {
   ClearPeople = '[People] Clear People'
 }
 
-
 export class LoadPeople implements Action {
   readonly type = PeopleActionTypes.LoadPeople;
 }
 
 export class LoadPeopleSuccess implements Action {
   readonly type = PeopleActionTypes.LoadPeopleSuccess;
-  constructor(public payload: {people: Person[]}) {}
+  constructor(public payload: Person[]) {}
 }
 
 export class LoadPeopleFailure implements Action {
@@ -27,22 +26,16 @@ export class LoadPeopleFailure implements Action {
 
 export class AddPerson implements Action {
   readonly type = PeopleActionTypes.AddPerson;
-  constructor(public payload: {person: Person}) {}
+  constructor(public payload: { person: Person }) {}
 }
 
 export class DeletePerson implements Action {
   readonly type = PeopleActionTypes.DeletePerson;
-  constructor(public payload: {id: string}) {}
+  constructor(public payload: { id: string }) {}
 }
 
 export class ClearPeople implements Action {
   readonly type = PeopleActionTypes.ClearPeople;
 }
 
-export type PeopleActions =
- LoadPeople
- | LoadPeopleSuccess
- | LoadPeopleFailure
- | AddPerson
- | DeletePerson
- | ClearPeople;
+export type PeopleActions = LoadPeople | LoadPeopleSuccess | LoadPeopleFailure | AddPerson | DeletePerson | ClearPeople;

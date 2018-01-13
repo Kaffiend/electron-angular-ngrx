@@ -43,8 +43,8 @@
     "@ngrx/store": "^4.1.1",
     "@ngrx/store-devtools": "^4.1.1",
     "core-js": "^2.4.1",
-    "rx-ipc-electron": "^0.1.2",
-    "rxjs": "^5.5.2",
+    "ngx-electron": "^1.0.4",
+    "rxjs": "^5.5.6",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {

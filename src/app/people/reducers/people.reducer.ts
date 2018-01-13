@@ -43,7 +43,7 @@ export const initialState: State = peopleAdapter.getInitialState({
 export function reducer(state = initialState, action: PeopleActions): State {
   switch (action.type) {
     case PeopleActionTypes.LoadPeopleSuccess: {
-      return peopleAdapter.addAll(action.payload.people, state);
+      return peopleAdapter.addAll(action.payload, state);
     }
     case PeopleActionTypes.ClearPeople: {
       return peopleAdapter.removeAll(state);

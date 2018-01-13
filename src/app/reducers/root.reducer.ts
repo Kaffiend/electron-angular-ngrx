@@ -8,7 +8,6 @@ import {
 import { environment } from '../../environments/environment';
 import { RouterStateUrl } from '../shared/utils';
 import * as fromRouter from '@ngrx/router-store';
-import * as fromPeople from '../people/reducers/people.reducer';
 
 /**
  * storeFreeze prevents state from being mutated. When mutation occurs, an
@@ -33,7 +32,6 @@ import { storeFreeze } from 'ngrx-store-freeze';
  */
 export interface State {
   router: fromRouter.RouterReducerState<RouterStateUrl>;
-  people: fromPeople.State;
 }
 
 /**
@@ -43,7 +41,6 @@ export interface State {
  */
 export const reducers: ActionReducerMap<State> = {
   router: fromRouter.routerReducer,
-  people: fromPeople.reducer
 };
 
 // console.log all actions

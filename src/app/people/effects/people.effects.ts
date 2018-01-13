@@ -2,18 +2,19 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import * as people from '../actions/people.actions';
 import { Person } from '../models/people';
-import rxIpc from 'rx-ipc-electron/lib/renderer';
+import { ElectronService } from 'ngx-electron';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/do';
 import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class PeopleEffects {
 
-  @Effect()
+  @Effect({dispatch: false})
   load$ = this.actions$.ofType(people.PeopleActionTypes.LoadPeople)
-    .switchMap(() => {
-      return rxIpc.runCommand('send-seeds')
-        .mergeMap((seeds: Person[]) => of(new people.LoadPeopleSuccess({people: seeds})));
-    });
+    .do(() => this.electron.ipcRenderer.send('req:people'));
 
-  constructor(private actions$: Actions) {}
+
+  constructor(private actions$: Actions, private electron: ElectronService) {}
 }
