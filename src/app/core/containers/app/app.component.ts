@@ -13,11 +13,15 @@ export class AppComponent {
   public routeList: NavItem[] = [
     {
       label: 'Home',
-      routerLink: '/'
+      routerLink: './'
     },
     {
       label: 'People',
-      routerLink: '/people'
+      routerLink: './people'
+    },
+    {
+      label: 'About',
+      routerLink: './about'
     },
   ];
 

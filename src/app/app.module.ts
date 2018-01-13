@@ -14,6 +14,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store/src/router_store
 import { RouterStateSerializer } from '@ngrx/router-store/src/serializer';
 import { CustomRouterStateSerializer } from 'app/shared/utils';
 import { reducers, metaReducers } from 'app/reducers/root.reducer';
+import { PeopleModule } from 'app/people/people.module';
 
 @NgModule({
   declarations: [],
@@ -25,6 +26,7 @@ import { reducers, metaReducers } from 'app/reducers/root.reducer';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     CoreModule.forRoot(),
     HomeModule,
+    PeopleModule,
     RouterModule.forRoot([{path: './', component: HomePageComponent}]),
   ],
   providers: [

@@ -2,21 +2,21 @@ import { TestBed, inject } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs/Observable';
 
-import { HomeEffects } from './home.effects';
+import { PeopleEffects } from './people.effects';
 
-describe('HomeService', () => {
+describe('PeopleService', () => {
   let actions$: Observable<any>;
-  let effects: HomeEffects;
+  let effects: PeopleEffects;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        HomeEffects,
+        PeopleEffects,
         provideMockActions(() => actions$)
       ]
     });
 
-    effects = TestBed.get(HomeEffects);
+    effects = TestBed.get(PeopleEffects);
   });
 
   it('should be created', () => {

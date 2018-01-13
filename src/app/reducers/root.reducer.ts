@@ -22,7 +22,6 @@ import { storeFreeze } from 'ngrx-store-freeze';
  * notation packages up all of the exports into a single object.
  */
 
-import * as fromHome from '../home/reducers/home.reducer';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
@@ -30,7 +29,6 @@ import * as fromHome from '../home/reducers/home.reducer';
  */
 export interface State {
   router: fromRouter.RouterReducerState<RouterStateUrl>;
-  home: fromHome.State;
 }
 
 /**
@@ -40,7 +38,6 @@ export interface State {
  */
 export const reducers: ActionReducerMap<State> = {
   router: fromRouter.routerReducer,
-  home: fromHome.reducer
 };
 
 // console.log all actions
