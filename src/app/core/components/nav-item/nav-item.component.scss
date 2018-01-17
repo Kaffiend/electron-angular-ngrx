@@ -1,0 +1,14 @@
+@import '~styles/variables';
+
+a {
+  position: relative;
+  top: 30%;
+  left: 35%;
+  margin: 10px;
+  text-align: center;
+  background-color: $nav-button-color;
+  color: black;
+  padding: 8px 16px;
+  line-height: 1.25;
+  border-radius: 8px;
+}

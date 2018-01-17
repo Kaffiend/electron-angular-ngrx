@@ -14,6 +14,7 @@ import { TaskFunction } from 'undertaker';
 export const launchElectronTask = <TaskFunction>function launchElectron() {
   const electronCmd = exec(`electron ${Paths.electron_dest}main`);
   electronCmd.stdout.pipe(process.stdout);
+  electronCmd.stderr.pipe(process.stderr);
   return electronCmd;
 };
 // Gulp-CLI documentation and task registration.
@@ -29,6 +30,7 @@ export const startHMRTask = <TaskFunction>function startHMR(done) {
   let firstRun = true;
   const hmrCmd = exec('ng serve --hmr -e=hmr -dop=false');
   hmrCmd.stdout.pipe(process.stdout);
+  hmrCmd.stderr.pipe(process.stderr);
   hmrCmd.stdout.on('data', data => {
     if (String(data) === 'webpack: Compiled successfully.\n') {
       if (firstRun) {
