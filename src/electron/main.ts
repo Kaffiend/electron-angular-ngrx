@@ -1,7 +1,7 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
+import { SEEDS } from './data';
 
-import * as path from 'path';
-
+import './dev-extensions';
 let applicationRef: Electron.BrowserWindow = null;
 
 const debugMode = true;
@@ -46,4 +46,8 @@ app.on('activate', () => {
   if (applicationRef === null) {
     createWindow();
   }
+});
+
+ipcMain.on('req:people', (event, arg: any) => {
+  event.sender.send('res:people', SEEDS );
 });

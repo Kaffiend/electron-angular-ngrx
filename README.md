@@ -3,10 +3,14 @@
 [![devDependency Status](https://david-dm.org/kaffiend/electron-angular-ngrx/dev-status.svg)](https://david-dm.org/kaffiend/electron-angular-ngrx#info=devDependencies)
 [![GitHub license](https://img.shields.io/github/license/Kaffiend/electron-angular-ngrx.svg)](https://github.com/Kaffiend/electron-angular-ngrx/blob/master/LICENSE)
 
-# Mission
-The mission of this project is to provide a simple quick start seed that works with `@angular/cli` not against it or hacked around ejection of the underlying webpack. This is to hopefully keep this seed's build and development process easy to maintain and build on.
+  NOTICE: Typescript 2.5.3 until peer dependecies of required packages update to ^2.6.x
 
-This seed takes a low impact approach to some of the issues plagued by angular electron seeds. This seed currently uses gulp and various, tried and true packages such as `browserlink` to instead proxy the electron window, and the electron process is monitored with nodemon to restart its process on changes during live-reload, and HMR development workflow.
+# Mission
+- The mission of this project is to provide a simple to use quick start seed that works with `@angular/cli` not against it or hacked around ejection of the underlying webpack. This is to keep this seed's build and development process easy to maintain and build on.
+- Embracing `@angular/cli` and `@ngrx/platform` to it's fullest, including [@ngrx/schematics](https://github.com/ngrx/platform/issues/674) for the CLI. `@ngrx/schematics` is not released yet, but we will keep up with the nightly builds as it progresses towards release as some of its features make developing in the platform extremly efficient.
+-  This seed takes a low impact approach to some of the issues plagued by angular electron seeds. This seed uses tried and true packages such as `browserlink` to instead proxy the electron window, instead of reloading through services such as electron-connect. The electron process is monitored with nodemon to restart its process on changes during live-reload, and HMR development workflow.
+All building and serving is still done by the CLI. We just proxy the connection to the CLI services via Gulp tasks. All STDOUT output from the CLI during tasks is passed through the wrapping Gulp Task to your process so you can still see it working in the background.
+- We will make an unrelenting effort to keep this seed up to date. We use it internally for own projects and thus keeping everything upto date is paramount. This seed will stay paralell with our own private servers on the 'master' branch.
 
 # Table of Contents
 - [Electron Angular NGRX](#electron-angular-ngrx)
@@ -29,6 +33,7 @@ This seed takes a low impact approach to some of the issues plagued by angular e
 # Getting Started
   - This project requires Electron, Gulp, and Angular CLI.
   - See [angular/cli](#angularcli) for CLI version. 
+
 ```bash
 npm install -g @angular/cli
 npm install -g electron
