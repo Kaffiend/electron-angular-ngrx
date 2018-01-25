@@ -19,6 +19,7 @@ export const buildAppTask = <TaskFunction>function buildApp() {
   const buildCmd = exec('ng build');
   // pipe cli output to STDOUT so we can see it working.
   buildCmd.stdout.pipe(process.stdout);
+  buildCmd.stderr.pipe(process.stdout);
   buildCmd.on('error', err => {
     throw err;
   });
@@ -36,6 +37,7 @@ export const rebuildAppTask = <TaskFunction>function rebuildApp(done) {
   const buildCmd = exec('ng build --delete-output-path false');
   // pipe cli output to STDOUT so we can see it working.
   buildCmd.stdout.pipe(process.stdout);
+  buildCmd.stderr.pipe(process.stdout);
   buildCmd.stdout.on('data', data => {
     proxyCli(LIVE_RELOAD_PROXY, LiveReloadBrowserSyncConfig);
     done();
