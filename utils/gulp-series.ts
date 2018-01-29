@@ -9,14 +9,13 @@ import { task, TaskFunction } from 'gulp';
 import * as typescript from 'gulp-typescript';
 import * as env from 'gulp-env';
 import * as gulp from 'gulp';
-import * as browserSync from 'browser-sync';
 
 /**
  * Call CLI 'ng build' function to clean the dist directory if it exists
  * and build the angular code.
  */
 export const buildAppTask = <TaskFunction>function buildApp() {
-  const buildCmd = exec('ng build');
+  const buildCmd = exec('npm run build');
   // pipe cli output to STDOUT so we can see it working.
   buildCmd.stdout.pipe(process.stdout);
   buildCmd.stderr.pipe(process.stderr);
@@ -37,8 +36,8 @@ export const rebuildAppTask = <TaskFunction>function rebuildApp(done) {
   const buildCmd = exec('ng build --delete-output-path false');
   // pipe cli output to STDOUT so we can see it working.
   buildCmd.stdout.pipe(process.stdout);
+  buildCmd.stderr.pipe(process.stderr);
   buildCmd.stdout.on('data', data => {
-    proxyCli(LIVE_RELOAD_PROXY, LiveReloadBrowserSyncConfig);
     done();
   });
   buildCmd.on('error', err => {
