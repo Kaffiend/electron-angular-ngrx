@@ -44,17 +44,14 @@
     "@ngrx/router-store": "^5.0.1",
     "@ngrx/store": "^5.0.0",
     "@ngrx/store-devtools": "^5.0.1",
-    "angular-split": "^1.0.0-rc.1",
     "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
     "ng2-split-pane": "^1.4.0",
-    "ngrx-forms": "^2.1.2",
     "ngx-bootstrap": "^2.0.0-rc.0",
     "ngx-electron": "^1.0.4",
     "rx-ipc-electron": "^0.1.2",
     "rxjs": "^5.5.6",
-    "socket.io-client": "^2.0.4",
     "zone.js": "^0.8.20"
   },
   "devDependencies": {
