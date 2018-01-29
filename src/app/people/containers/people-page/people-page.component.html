@@ -1,6 +1,14 @@
-<div class="row">
-  <div class="col-md-6 offset-md-3 text-center">
+<div class="container">
+  <div class="row">
     <h2>People Page</h2>
-    {{people$ | async | json}}
+  </div>
+  <div class="row">
+    <h4>The list below is populated by data passed from the main process to the render process into state.</h4>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h2>Inspirational Projects</h2>
+      <kaf-people-list [peopleList]="people$"></kaf-people-list>
+    </div>
   </div>
 </div>

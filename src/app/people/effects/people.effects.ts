@@ -5,6 +5,7 @@ import { Person } from '../models/people';
 import { ElectronService } from 'ngx-electron';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/do';
 import { of } from 'rxjs/observable/of';
 

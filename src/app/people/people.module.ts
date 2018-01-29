@@ -6,6 +6,7 @@ import { PeoplePageComponent } from 'app/people/containers/people-page';
 import { RouterModule } from '@angular/router';
 import { reducers } from './reducers';
 import { PeopleEffects } from './effects/people.effects';
+import { PeopleComponentsModule } from './components/people-components.module';
 
 export const COMPONENTS = [
   PeoplePageComponent
@@ -18,7 +19,8 @@ export const COMPONENTS = [
       {path: 'people', component: PeoplePageComponent}
     ]),
     StoreModule.forFeature('people', reducers),
-    EffectsModule.forFeature([PeopleEffects])
+    EffectsModule.forFeature([PeopleEffects]),
+    PeopleComponentsModule
   ],
   declarations: COMPONENTS,
   exports: COMPONENTS
