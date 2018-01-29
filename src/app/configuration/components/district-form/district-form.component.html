@@ -1,0 +1,40 @@
+  <div class="innerPanel">
+      <div class="card-block">
+        <div class="card-header">
+          <h4 class="card-title">Districts</h4>
+          <h6 class="card-subtitle md-2 text-muted">Add a District</h6>
+        </div>
+        <div class="card-block">
+          <form novalidate class="needs-validation" [ngClass]="{'was-validated': (formState | async).isDirty}" [ngrxFormState]="(formState | async)"
+            (ngSubmit)="onSubmit()">
+            <div class="form-row">
+              <div class="col-md-6 mb-3">
+                <label for="name">District Name</label>
+                <input type="text" class="form-control" [ngrxFormControlState]="(formState | async).controls.districtName" placeholder="District Name"
+                  required minlength="2">
+                <div class="valid-feedback">
+                  Looks Good!
+                </div>
+                <div class="invalid-feedback">
+                  District Name is required and must be at minimum 2 characters.
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-6 mb-3">
+                <label for="code">Quick Code</label>
+                <input type="text" class="form-control" [ngrxFormControlState]="(formState | async).controls.quickCode" placeholder="Code"
+                  maxlength="3" minlength="2" style="width: 90px;" required>
+                <div class="valid-feedback">
+                  Looks Good!
+                </div>
+                <div class="invalid-feedback">
+                  Quick Code is required and must be at minimum 2 characters.
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary" [disabled]="(formState | async).isInvalid" type="submit">Add</button>
+          </form>
+        </div>
+      </div>
+  </div>

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 
 import { NavItem } from '../../components/nav-item';
 
@@ -6,6 +6,7 @@ import { NavItem } from '../../components/nav-item';
   selector: 'kaf-root',
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
@@ -22,7 +23,7 @@ export class AppComponent {
     {
       label: 'About',
       routerLink: './about'
-    },
+    }
   ];
 
 }

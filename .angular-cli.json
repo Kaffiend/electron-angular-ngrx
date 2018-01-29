@@ -1,7 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "electron-angular-ngrx"
+    "name": "electron-angular-ngrx",
+    "ejected": true
   },
   "apps": [
     {
@@ -19,10 +20,10 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "kaf",
       "styles": [
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "styles/styles.scss"
       ],
-      "scripts": [
-      ],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

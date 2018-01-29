@@ -1,6 +1,5 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import { SEEDS } from './data';
-import { Observable } from 'rxjs/Observable';
 
 import './dev-extensions';
 let applicationRef: Electron.BrowserWindow = null;
