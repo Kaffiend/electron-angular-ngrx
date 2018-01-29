@@ -2,11 +2,8 @@ import { Paths, LIVE_RELOAD_PROXY, HMR_PROXY, HmrBrowserSyncConfig, LiveReloadBr
 import * as gulp from 'gulp';
 import { exec } from 'child_process';
 import * as compodoc from '@compodoc/gulp-compodoc';
-import * as browserSync from 'browser-sync';
 import * as nodemon from 'gulp-nodemon';
-import { proxyCli } from './gulp-series';
 import { TaskFunction } from 'undertaker';
-
 /**
  * Calls electron on the main process in the 'dist/electron' directory
  * Pipes STDOUT from Electron's Main process to the console.
@@ -14,6 +11,7 @@ import { TaskFunction } from 'undertaker';
 export const launchElectronTask = <TaskFunction>function launchElectron() {
   const electronCmd = exec(`electron ${Paths.electron_dest}main`);
   electronCmd.stdout.pipe(process.stdout);
+  electronCmd.stderr.pipe(process.stderr);
   return electronCmd;
 };
 // Gulp-CLI documentation and task registration.
@@ -26,13 +24,14 @@ launchElectronTask.description = '<Paralell>: Launches Electron and pipes STDOUT
  * @param done - Callback function to signal task completion.
  */
 export const startHMRTask = <TaskFunction>function startHMR(done) {
-  let firstRun = true;
-  const hmrCmd = exec('ng serve --hmr -e=hmr -dop=false');
+  process.env.FIRST_RUN = 'true';
+  const hmrCmd = exec('webpack-dev-server --env hot --hot --hot-only --port 4200');
   hmrCmd.stdout.pipe(process.stdout);
+  hmrCmd.stderr.pipe(process.stderr);
   hmrCmd.stdout.on('data', data => {
-    if (String(data) === 'webpack: Compiled successfully.\n') {
-      if (firstRun) {
-        firstRun = false;
+    if (process.env.FIRST_RUN === 'true') {
+      if (String(data) === 'webpack: Compiled successfully.\n' || String(data) === 'webpack: Compiled with warnings.') {
+        process.env.FIRST_RUN = 'false';
         done();
         return serveElectronHmrTask(done);
       }
@@ -70,8 +69,6 @@ export const serveLiveReloadTask = <TaskFunction>function serveLiveReload() {
   nodemon({
     exec: `electron ${Paths.electron_dest}main`,
     watch: [Paths.electron_dest]
-  }).on('start', () => {
-    proxyCli(LIVE_RELOAD_PROXY, LiveReloadBrowserSyncConfig);
   });
 };
 // Gulp-CLI documentation and task registration.
@@ -82,8 +79,6 @@ export const serveElectronHmrTask = <TaskFunction>function serveElectronHmr() {
   return nodemon({
     exec: `electron ${Paths.electron_dest}main`,
     watch: [Paths.electron_dest]
-  }).on('start', () => {
-    proxyCli(HMR_PROXY, HmrBrowserSyncConfig);
   });
 };
 // Gulp-CLI documentation and task registration.

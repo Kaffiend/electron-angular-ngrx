@@ -1,0 +1,5 @@
+  <ul>
+    <li *ngFor="let person of (peopleList | async)">
+        <strong>Owner:</strong>{{person?.name}} <strong>Project:</strong> {{person?.note}}
+    </li>
+  </ul>

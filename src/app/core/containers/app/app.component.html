@@ -1,0 +1,6 @@
+<kaf-toolbar>
+    <span *ngFor="let route of routeList">
+      <kaf-nav-item [label]="route.label" [routerLink]="route.routerLink"></kaf-nav-item>
+    </span>
+</kaf-toolbar>
+<router-outlet></router-outlet>
