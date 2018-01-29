@@ -6,7 +6,7 @@
   NOTICE: Typescript 2.5.3 until peer dependecies of required packages update to ^2.6.x
 
 # Mission
-- The mission of this project is to provide a simple to use quick start seed that works with `@angular/cli` not against it or hacked around ejection of the underlying webpack. This is to keep this seed's build and development process easy to maintain and build on.
+- The mission of this project is to provide a simple to use quick start seed that works with `@angular/cli` This is to keep this seed's build and development process easy to maintain and build on.
 - Embracing `@angular/cli` and `@ngrx/platform` to it's fullest, including [@ngrx/schematics](https://github.com/ngrx/platform/issues/674) for the CLI. `@ngrx/schematics` is not released yet, but we will keep up with the nightly builds as it progresses towards release as some of its features make developing in the platform extremly efficient.
 -  This seed takes a low impact approach to some of the issues plagued by angular electron seeds. This seed uses tried and true packages such as `browserlink` to instead proxy the electron window, instead of reloading through services such as electron-connect. The electron process is monitored with nodemon to restart its process on changes during live-reload, and HMR development workflow.
 All building and serving is still done by the CLI. We just proxy the connection to the CLI services via Gulp tasks. All STDOUT output from the CLI during tasks is passed through the wrapping Gulp Task to your process so you can still see it working in the background.
