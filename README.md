@@ -19,16 +19,16 @@ All building and serving is still done by the CLI. We just proxy the connection 
 - [Getting Started](#getting-started)
 - [Project Structure](#project-structure)
 - [Build Process](#build-process)
-    - [Build - HMR (development)](#build---hmr-development)
-    - [Build - Live Reload (development)](#build---live-reload-development)
-    - [Build - One-Shot Launch (development)](#build---one-shot-launch-development)
-    - [Tasks](#tasks)
+  - [Build - HMR (development)](#build---hmr-development)
+  - [Build - Live Reload (development)](#build---live-reload-development)
+  - [Build - One-Shot Launch (development)](#build---one-shot-launch-development)
+  - [Tasks](#tasks)
 - [Contributing](#contributing)
 - [ToDo](#todo)
 - [angular/cli](#angularcli)
-    - [Running unit tests](#running-unit-tests)
-    - [Running end-to-end tests](#running-end-to-end-tests)
-    - [Further help](#further-help)
+  - [Running unit tests](#running-unit-tests)
+  - [Running end-to-end tests](#running-end-to-end-tests)
+  - [Further help](#further-help)
 
 # Getting Started
   - This project requires Electron, Gulp, and Angular CLI.
@@ -125,10 +125,11 @@ Pleaes review the [CONTRIBUTING](https://github.com/Kaffiend/electron-angular-ng
 # ToDo
 - [x] Integrate HMR (Hot Module Relplacement) workflow.
 - [x] Clean up tasks in a uniform manner and self-documenting.
-- [ ] Integrate simple NGRX with HMR.
+- [x] Integrate simple NGRX with HMR.
 - [ ] Electron packaging.
-- [ ] Integrate developement extensions redux, devtron.
+- [x] Integrate developement extensions redux, devtron.
 - [x] Add Compodoc.
+- [x] Native Module Support.
 - [x] Add contribution guidelines.
 - [ ] Add Conventional Changelog.
 - [ ] Wiki for adding [@angular/material](https://github.com/angular/material).
