@@ -56,7 +56,7 @@ npm install
 
 
 ## Build - HMR (development)
-Run `npm start` (default script) or `gulp hmr` to build,  and launch the HMR Workflow. 
+Run `npm start` (default script), and launch the HMR Workflow.
 
 
 # Contributing
