@@ -2,7 +2,7 @@
 [![Dependency Status](https://david-dm.org/kaffiend/electron-angular-ngrx.svg)](https://david-dm.org/kaffiend/electron-angular-ngrx)
 [![devDependency Status](https://david-dm.org/kaffiend/electron-angular-ngrx/dev-status.svg)](https://david-dm.org/kaffiend/electron-angular-ngrx#info=devDependencies)
 [![GitHub license](https://img.shields.io/github/license/Kaffiend/electron-angular-ngrx.svg)](https://github.com/Kaffiend/electron-angular-ngrx/blob/master/LICENSE)
-
+Dev Dependency flags are from Karma, will update as they do.
 # Mission
 - The mission of this project is to provide a simple to use quick start seed that works with `@angular/cli`. This is to keep this seed's build and development process easy to maintain and build on.
 - Embracing `@angular/cli` and `@ngrx/platform` to it's fullest, including [@ngrx/schematics](https://github.com/ngrx/platform/issues/674) for the CLI. `@ngrx/schematics` is not released yet, but we will keep up with the nightly builds as it progresses towards release as some of its features make developing in the platform extremly efficient.
