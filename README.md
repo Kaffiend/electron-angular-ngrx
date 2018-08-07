@@ -43,7 +43,6 @@ npm install
 ├── dist                <--Angular Build Artifacts
 |  ├── electron         <--Electron Build Artifacts
 ├── e2e                 <--End-To-End Tests (Protractor)
-├── gulpfile.ts         <--Build Entry Point
 ├── src
 |  ├── app              <--Angular App Code
 |  ├── assets           <--Images, Fonts, Icons etc.
@@ -52,10 +51,6 @@ npm install
 |  ├── hmr.ts           <--HMR Bootstraping Utility
 |  ├── main.ts          <--Angular Entry Point (HMR Logic Included)
 ├── typings             <--Custom Typings
-└── utils               <--Build Process Utilities (See Build Process)
-   ├── gulp-config.ts   <--Static Build Configuration
-   ├── gulp-parallel.ts <--Parallel Build Utilities
-   └── gulp-series.ts   <--Series Build Utilities
 ```
 
 # Build Process
