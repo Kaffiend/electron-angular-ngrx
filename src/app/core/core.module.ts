@@ -5,8 +5,6 @@ import { RouterModule } from '@angular/router';
 import { CoreComponentsModule } from './components/core-components.module';
 
 import { AppComponent } from './containers/app/app.component';
-import { NavItemComponent } from 'app/core/components/nav-item';
-import { ToolbarComponent } from 'app/core/components/toolbar';
 
 
 @NgModule({
