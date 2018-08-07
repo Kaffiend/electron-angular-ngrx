@@ -58,7 +58,6 @@
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
     "ng2-split-pane": "^1.4.0",
-    "ngx-bootstrap": "^2.0.0-rc.0",
     "ngx-electron": "^1.0.4",
     "rx-ipc-electron": "^0.1.2",
     "rxjs": "^6.2.2",
