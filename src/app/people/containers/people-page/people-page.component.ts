@@ -3,7 +3,8 @@ import { Store } from '@ngrx/store';
 import * as people from '../../actions/people.actions';
 import * as fromPeople from '../../reducers';
 import { Person } from '../../models/people';
-import { Observable } from 'rxjs/Observable';
+import { Observable  } from 'rxjs';
+
 import { ElectronService } from 'ngx-electron';
 
 @Component({

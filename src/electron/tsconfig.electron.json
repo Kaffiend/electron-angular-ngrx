@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/electron",
+    "module": "commonjs",
+    "types": ["electron"]
+  },
+  "types": [
+    "electron"
+  ],
+  "exclude": [
+    "node_modules",
+    "test.ts",
+    "**/*.spec.ts"
+  ]
+}

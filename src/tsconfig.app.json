@@ -1,12 +1,13 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../out-tsc/app",
+    "outDir": "../dist/out-tsc",
     "module": "es2015",
     "types": []
   },
   "types": [
-    "electron"
+    "electron",
+    "node"
   ],
   "exclude": [
     "node_modules",
