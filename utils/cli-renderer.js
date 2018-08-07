@@ -1,4 +1,5 @@
 // Thanks to @maximegris!!!
+// Digs into @angular/cli packaged configuration and replaces the renderer target for electron to allow native module usage.
 const angularCliWebpack = './node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/webpack-configs/browser.js';
 const fs = require('fs');
 
