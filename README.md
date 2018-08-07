@@ -6,7 +6,7 @@
 # Mission
 - The mission of this project is to provide a simple to use quick start seed that works with `@angular/cli`. This is to keep this seed's build and development process easy to maintain and build on.
 - Embracing `@angular/cli` and `@ngrx/platform` to it's fullest, including [@ngrx/schematics](https://github.com/ngrx/platform/issues/674) for the CLI. `@ngrx/schematics` is not released yet, but we will keep up with the nightly builds as it progresses towards release as some of its features make developing in the platform extremly efficient.
--  This seed takes a low impact approach to some of the issues plagued by angular electron seeds. This seed uses tried and true packages such as `browserlink` to instead proxy the electron window, instead of reloading through services such as electron-connect. The electron process is monitored with nodemon to restart its process on changes during live-reload, and HMR development workflow.
+-  This seed takes a low impact approach to some of the issues plagued by angular electron seeds. This seed uses minimal approach to instead proxy the electron window, instead of reloading through services such as electron-connect.
 All building and serving is still done by the CLI. We just proxy the connection to the CLI services via scripting. All STDOUT output from the CLI during tasks is passed through to your process so you can still see it working in the background.
 - We will make an unrelenting effort to keep this seed up to date. We use it internally for own projects and thus keeping everything upto date is paramount. This seed will stay paralell with our own private servers on the 'master' branch.
 - Gulp has been removed for simplicity and performance.
