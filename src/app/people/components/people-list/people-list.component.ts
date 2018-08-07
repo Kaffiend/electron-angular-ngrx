@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Person } from '../../models/people';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'kaf-people-list',
