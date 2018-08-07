@@ -33,7 +33,6 @@ All building and serving is still done by the CLI. We just proxy the connection 
 ```bash
 npm install -g @angular/cli
 npm install -g electron
-npm install -g gulp@next
 npm install
 ```
 `npm start` is the default task that launchs the HMR development workflow.
