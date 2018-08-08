@@ -78,6 +78,7 @@ Pleaes review the [CONTRIBUTING](https://github.com/Kaffiend/electron-angular-ng
 
 # angular/cli 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
+This project is currently maintained and was upgraded to version 6.1.2
 
 
 ## Running unit tests
