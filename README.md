@@ -60,7 +60,7 @@ Run `npm start` (default script), and launch the HMR Workflow.
 
 
 # Contributing
-Pleaes review the [CONTRIBUTING](https://github.com/Kaffiend/electron-angular-ngrx/blob/master/CONTRIBUTING.md) guidlines.
+Please review the [CONTRIBUTING](https://github.com/Kaffiend/electron-angular-ngrx/blob/master/CONTRIBUTING.md) guidlines.
 
 # ToDo
 - [x] Integrate HMR (Hot Module Relplacement) workflow.
